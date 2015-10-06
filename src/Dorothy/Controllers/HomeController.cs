@@ -1,32 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNet.Authentication.Cookies;
 using Microsoft.AspNet.Mvc;
+using Microsoft.AspNet.Authorization;
+using System.Security.Claims;
 
 namespace Dorothy.Controllers
 {
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult About()
+        [AllowAnonymous, HttpPost]
+        public async Task<IActionResult> Index(string password)
         {
-            ViewData["Message"] = "Your application description page.";
+            if (password == "asdf")
+            {
+                var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "User") };
+                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                await Context.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+            }
+            else
+            {
+                ModelState.AddModelError("", "Passwort ungültig.");
+            }
 
             return View();
         }
 
-        public IActionResult Contact()
+        [Authorize]
+        public async Task<IActionResult> Logout()
         {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
+            await Context.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return Redirect("~/");
         }
 
+        [AllowAnonymous]
         public IActionResult Error()
         {
             return View("~/Views/Shared/Error.cshtml");

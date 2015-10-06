@@ -37,6 +37,11 @@ namespace Dorothy
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
 
+            app.UseCookieAuthentication(options => {
+                options.AutomaticAuthentication = true;
+                options.LoginPath = "/";
+            });
+
             // Configure the HTTP request pipeline.
 
             // Add the following to the request pipeline only in development environment.
