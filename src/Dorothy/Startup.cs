@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNet.Builder;
+﻿using Dorothy.Models;
+using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
@@ -14,7 +15,7 @@ namespace Dorothy
             // Setup configuration sources.
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
+                .AddEnvironmentVariables("Dorothy.");
             Configuration = builder.Build();
         }
 
@@ -23,12 +24,10 @@ namespace Dorothy
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add MVC services to the services container.
             services.AddMvc();
 
-            // Uncomment the following line to add Web API services which makes it easier to port Web API 2 controllers.
-            // You will also need to add the Microsoft.AspNet.Mvc.WebApiCompatShim package to the 'dependencies' section of project.json.
-            // services.AddWebApiConventions();
+            services.AddSingleton(x=>Configuration);
+            services.AddSingleton<Configuration>();
         }
 
         // Configure is called after ConfigureServices is called.
