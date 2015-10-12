@@ -1,6 +1,7 @@
 ﻿using Dorothy.Models;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
+using Microsoft.Data.Entity;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
@@ -15,7 +16,7 @@ namespace Dorothy
             // Setup configuration sources.
             var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
-                .AddEnvironmentVariables("Dorothy.");
+                .AddEnvironmentVariables("Dorothy:");
             Configuration = builder.Build();
         }
 
@@ -26,8 +27,15 @@ namespace Dorothy
         {
             services.AddMvc();
 
-            services.AddSingleton(x=>Configuration);
-            services.AddSingleton<Configuration>();
+            var config = new Configuration(Configuration);
+            services.AddSingleton(x=>config);
+
+            services.AddEntityFramework()
+                .AddSqlServer()
+                .AddDbContext<Db>(options =>
+                {
+                    options.UseSqlServer(config.ConnectionString);
+                });
         }
 
         // Configure is called after ConfigureServices is called.
