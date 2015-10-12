@@ -1,4 +1,5 @@
 ﻿using Microsoft.Data.Entity;
+using Microsoft.Data.Entity.Migrations;
 
 namespace Dorothy.Models
 {
@@ -6,7 +7,7 @@ namespace Dorothy.Models
     {
         public Db()
         {
-            Database.EnsureCreated();
+                Database.Migrate();
         }
 
         public DbSet<Guest> Guests { get; set; }

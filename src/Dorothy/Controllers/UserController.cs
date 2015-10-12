@@ -19,7 +19,6 @@ namespace Dorothy.Controllers
 
         public IActionResult Index()
         {
-           var x = _db.Guests.ToList();
             return View(new IndexViewModel());
         }
     }

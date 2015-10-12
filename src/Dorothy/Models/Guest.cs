@@ -12,5 +12,7 @@ namespace Dorothy.Models
         public int AdultCount { get; set; }
         public int ChildCount { get; set; }
         public bool IsOptional { get; set; }
+        public bool HasInvitation { get; set; }
+        public string Notes { get; set; }
     }
 }

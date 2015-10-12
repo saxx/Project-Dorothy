@@ -1,0 +1,18 @@
+﻿@model Dorothy.ViewModels.Guests.IndexViewModel
+
+<h2>Gäste</h2>
+
+<table>
+    <tr>
+        <th>Name(n)</th>
+    </tr>
+
+    @foreach (var guest in Model.Guests)
+    {
+        <tr>
+            <td>
+                @guest.Names
+            </td>
+        </tr>
+    }
+</table>
