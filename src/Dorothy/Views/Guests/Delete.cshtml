@@ -1,0 +1,14 @@
+﻿@model Dorothy.ViewModels.Guests.DeleteViewModel
+
+<h2>Gast löschen</h2>
+<hr/>
+
+<form class="form-horizontal" method="POST">
+
+    <p>Ganz sicher und unwiderbringlich den Gast <b>@Model.Names</b> löschen?</p>
+
+    <div class="form-group">
+        <a href="@Url.Action("Index")" class="btn btn-default">Nein, zurück</a>
+            <button type="submit" class="btn btn-danger">Ja, löschen</button>
+    </div>
+</form>

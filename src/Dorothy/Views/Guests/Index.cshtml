@@ -2,9 +2,17 @@
 
 <h2>Gäste</h2>
 
-<table>
+<a asp-action="Create" class="btn btn-primary">Neuen Gast anlegen</a>
+
+<hr />
+
+<table class="table table-hover">
     <tr>
         <th>Name(n)</th>
+        <th>Anzahl</th>
+        <th>Notizen</th>
+        <th>Einladung erhalten</th>
+        <th></th>
     </tr>
 
     @foreach (var guest in Model.Guests)
@@ -12,6 +20,21 @@
         <tr>
             <td>
                 @guest.Names
+            </td>
+            <td>
+                @guest.AdultCount Erwachsene, @guest.ChildCount Kinder
+            </td>
+            <td>
+                @guest.Notes
+            </td>
+            <td>
+                @if (guest.HasInvitation)
+                {
+                    <span class="glyphicon glyphicon-ok"></span>
+                }
+            </td>
+            <td>
+                <a href="@Url.Action("Delete",new { guest.Id })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
             </td>
         </tr>
     }

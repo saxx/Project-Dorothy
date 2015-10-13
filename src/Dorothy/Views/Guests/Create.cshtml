@@ -1,0 +1,56 @@
+﻿@model Dorothy.ViewModels.Guests.CreateViewModel
+
+<h2>Gast hinzufügen</h2>
+<hr/>
+
+<form class="form-horizontal" method="POST">
+    @Html.ValidationSummary()
+
+    <div class="form-group">
+        @Html.LabelFor(x=>x.Names, "Name(n)", new { @class="col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextBoxFor(x => x.Names, new { @class="form-control" })
+            @Html.ValidationMessageFor(x => x.Names)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.AdultCount, "Anzahl", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10 input-group">
+            @Html.TextBoxFor(x => x.AdultCount, new { @class = "form-control" }) Erwachsene @Html.TextBoxFor(x => x.ChildCount, new { @class = "form-control" }) Kinder 
+            @Html.ValidationMessageFor(x => x.AdultCount) @Html.ValidationMessageFor(x => x.ChildCount)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <div class="checkbox">
+                <label>
+                    @Html.EditorFor(x => x.IsOptional) Noch unsicher, ob eingeladen wird
+                    @Html.ValidationMessageFor(x => x.IsOptional)
+                </label>
+            </div>
+
+            <div class="checkbox">
+                <label>
+                    @Html.EditorFor(x => x.HasInvitation) Einladung erhalten
+                    @Html.ValidationMessageFor(x => x.HasInvitation)
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(x => x.Notes, "Notizen", new { @class = "col-sm-2 control-label" })
+        <div class="col-sm-10">
+            @Html.TextAreaFor(x => x.Notes, new { @class = "form-control" })
+            @Html.ValidationMessageFor(x => x.Notes)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">Hinzufügen</button>
+        </div>
+    </div>
+</form>
