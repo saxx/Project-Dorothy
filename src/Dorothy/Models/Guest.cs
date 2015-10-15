@@ -14,5 +14,6 @@ namespace Dorothy.Models
         public bool IsOptional { get; set; }
         public bool HasInvitation { get; set; }
         public string Notes { get; set; }
+        public string Group { get; set; }
     }
 }

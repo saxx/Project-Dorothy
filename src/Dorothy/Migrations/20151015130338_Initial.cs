@@ -17,6 +17,7 @@ namespace Dorothy.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.IdentityColumn),
                     AdultCount = table.Column<int>(isNullable: false),
                     ChildCount = table.Column<int>(isNullable: false),
+                    Group = table.Column<string>(isNullable: true),
                     HasInvitation = table.Column<bool>(isNullable: false),
                     IsOptional = table.Column<bool>(isNullable: false),
                     Names = table.Column<string>(isNullable: true),

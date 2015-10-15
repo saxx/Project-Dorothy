@@ -13,7 +13,7 @@ namespace Dorothy.Migrations
     {
         public override string Id
         {
-            get { return "20151012132137_Initial"; }
+            get { return "20151015130338_Initial"; }
         }
 
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,8 @@ namespace Dorothy.Migrations
                     b.Property<int>("AdultCount");
 
                     b.Property<int>("ChildCount");
+
+                    b.Property<string>("Group");
 
                     b.Property<bool>("HasInvitation");
 

@@ -26,6 +26,8 @@ namespace Dorothy.Migrations
 
                     b.Property<int>("ChildCount");
 
+                    b.Property<string>("Group");
+
                     b.Property<bool>("HasInvitation");
 
                     b.Property<bool>("IsOptional");

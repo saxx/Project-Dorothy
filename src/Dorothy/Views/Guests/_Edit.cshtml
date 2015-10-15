@@ -1,0 +1,70 @@
+﻿@model Dorothy.ViewModels.Guests.CreateViewModel
+
+<div class="form-group">
+    @Html.LabelFor(x => x.Names, "Name(n)", new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+        @Html.TextBoxFor(x => x.Names, new { @class = "form-control" })
+        @Html.ValidationMessageFor(x => x.Names)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.Group, "Gruppe", new { @class = "col-sm-2 control-label" })
+    <div class="col-sm-10">
+        @Html.TextBoxFor(x => x.Group, new { @class = "form-control", list="groups" })
+        @Html.ValidationMessageFor(x => x.Group)
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.AdultCount, "Anzahl", new { @class = "col-sm-2 control-label" })
+
+    <div class="col-sm-5">
+        <div class="input-group">
+            @Html.TextBoxFor(x => x.AdultCount, new { @class = "form-control" })
+            <span class="input-group-addon">Erwachsene</span>
+        </div>
+        @Html.ValidationMessageFor(x => x.AdultCount)
+    </div>
+
+    <div class="col-sm-5">
+        <div class="input-group">
+            @Html.TextBoxFor(x => x.ChildCount, new { @class = "form-control" })
+            <span class="input-group-addon">Kinder</span>
+        </div>
+        @Html.ValidationMessageFor(x => x.ChildCount)
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+        <div class="checkbox">
+            <label>
+                @Html.EditorFor(x => x.IsOptional) Noch unsicher, ob eingeladen wird
+                @Html.ValidationMessageFor(x => x.IsOptional)
+            </label>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                @Html.EditorFor(x => x.HasInvitation) Einladung erhalten
+                @Html.ValidationMessageFor(x => x.HasInvitation)
+            </label>
+        </div>
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.Notes, "Notizen", new {@class = "col-sm-2 control-label"})
+    <div class="col-sm-10">
+        @Html.TextAreaFor(x => x.Notes, new {@class = "form-control"})
+        @Html.ValidationMessageFor(x => x.Notes)
+    </div>
+</div>
+
+<datalist id="groups">
+    @foreach (string group in Model.AvailableGroups)
+    {
+        <option value="@group">@group</option>
+    }
+</datalist>

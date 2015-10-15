@@ -6,9 +6,41 @@
 
 <hr />
 
+<table class="table table-condensed">
+    <tr>
+        <th></th>
+        <th></th>
+        <th>Noch unsicher, ob eingeladen wird</th>
+    </tr>
+
+    <tr>
+        <td><span class="label label-success">< Ohne Gruppe ></span></td>
+        <td>@Model.WithoutGroupCount.AdultCount Erwachsene, @Model.WithoutGroupCount.ChildCount Kinder</td>
+        <td>@Model.WithoutGroupCount.OptionalAdultCount Erwachsene, @Model.WithoutGroupCount.OptionalChildCount Kinder</td>
+    </tr>
+
+    @foreach (var pair in Model.PerGroupCount)
+    {
+        <tr>
+            <td><span class="label label-success">@pair.Key</span></td>
+            <td>@pair.Value.AdultCount Erwachsene, @pair.Value.ChildCount Kinder</td>
+            <td>@pair.Value.OptionalAdultCount Erwachsene, @pair.Value.OptionalChildCount Kinder</td>
+        </tr>
+    }
+
+    <tr>
+        <th>Ingesamt</th>
+        <th>@Model.OverallCount.AdultCount Erwachsene, @Model.OverallCount.ChildCount Kinder</th>
+        <th>@Model.OverallCount.OptionalAdultCount Erwachsene, @Model.OverallCount.OptionalChildCount Kinder</th>
+    </tr>
+</table>
+
+<hr />
+
 <table class="table table-hover">
     <tr>
         <th>Name(n)</th>
+        <th>Gruppe</th>
         <th>Anzahl</th>
         <th>Notizen</th>
         <th>Einladung erhalten</th>
@@ -17,9 +49,12 @@
 
     @foreach (var guest in Model.Guests)
     {
-        <tr>
+        <tr class="@( guest.IsOptional ? "text-muted" : "")">
             <td>
                 @guest.Names
+            </td>
+            <td>
+                <span class="label label-success">@guest.Group</span>
             </td>
             <td>
                 @guest.AdultCount Erwachsene, @guest.ChildCount Kinder
@@ -32,6 +67,9 @@
                 {
                     <span class="glyphicon glyphicon-ok"></span>
                 }
+            </td>
+            <td>
+                <a href="@Url.Action("Edit",new { guest.Id })" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
             <td>
                 <a href="@Url.Action("Delete",new { guest.Id })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>

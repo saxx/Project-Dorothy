@@ -26,9 +26,9 @@ namespace Dorothy.Models
             }
         }
 
-        public string UserPassword { get; private set; }
-        public string AdminPassword { get; private set; }
+        public string UserPassword { get; }
+        public string AdminPassword { get; }
 
-        public string ConnectionString { get; private set; }
+        public string ConnectionString { get; }
     }
 }
