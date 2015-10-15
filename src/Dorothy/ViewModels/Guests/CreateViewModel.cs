@@ -14,8 +14,7 @@ namespace Dorothy.ViewModels.Guests
 
         public async Task<CreateViewModel> Fill(Db db)
         {
-            AvailableGroups = await db.Guests.Select(x => x.Group).Where(x => !string.IsNullOrEmpty(x)).Distinct().ToListAsync();
-
+            AvailableGroups = await db.Guests.Select(x => x.Group).Where(x => x != null && x != "").Distinct().ToListAsync();
             return this;
         }
 
@@ -28,6 +27,6 @@ namespace Dorothy.ViewModels.Guests
         public string Notes { get; set; }
         public string Group { get; set; }
 
-        public IEnumerable<string> AvailableGroups { get; private set; } 
+        public IEnumerable<string> AvailableGroups { get; private set; }
     }
 }

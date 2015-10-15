@@ -13,11 +13,14 @@
         <th>Noch unsicher, ob eingeladen wird</th>
     </tr>
 
-    <tr>
-        <td><span class="label label-success">< Ohne Gruppe ></span></td>
-        <td>@Model.WithoutGroupCount.AdultCount Erwachsene, @Model.WithoutGroupCount.ChildCount Kinder</td>
-        <td>@Model.WithoutGroupCount.OptionalAdultCount Erwachsene, @Model.WithoutGroupCount.OptionalChildCount Kinder</td>
-    </tr>
+    @if (Model.WithoutGroupCount.HasAny)
+    {
+        <tr>
+            <td><span class="label label-success">< Ohne Gruppe ></span></td>
+            <td>@Model.WithoutGroupCount.AdultCount Erwachsene, @Model.WithoutGroupCount.ChildCount Kinder</td>
+            <td>@Model.WithoutGroupCount.OptionalAdultCount Erwachsene, @Model.WithoutGroupCount.OptionalChildCount Kinder</td>
+        </tr>
+    }
 
     @foreach (var pair in Model.PerGroupCount)
     {

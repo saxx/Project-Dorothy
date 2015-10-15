@@ -57,6 +57,8 @@ namespace Dorothy.ViewModels.Guests
             public int ChildCount { get; set; }
             public int OptionalAdultCount { get; set; }
             public int OptionalChildCount { get; set; }
+
+            public bool HasAny => AdultCount + ChildCount + OptionalAdultCount + OptionalChildCount > 0;
         }
     }
 }
