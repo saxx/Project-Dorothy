@@ -9,20 +9,23 @@
     padding: 3px 6px;
 }
 
-.glyphicon.error {
-    background-color: red;
+@mixin glyphicon-error() {
     color: white;
     padding: 3px;
     border-radius: 50%;
     cursor: default;
 }
 
-.glyphicon.warning {
-    background-color: orange;
-    color: black;
-    padding: 3px;
-    border-radius: 50%;
-    cursor: default;
+.glyphicon {
+    &.error {
+        @include glyphicon-error;
+        background-color: red;
+    }
+
+    &.warning {
+        @include glyphicon-error;
+        background-color: orange;
+    }
 }
 
 .text-muted.salutation {
