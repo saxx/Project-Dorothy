@@ -33,14 +33,14 @@ namespace Dorothy.Controllers
             {
                 var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "User") };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                await Context.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 return RedirectToAction("Index", "User");
             }
             else if (password == _config.AdminPassword)
             {
                 var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "Admin") };
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                await Context.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
+                await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
                 return RedirectToAction("Index", "User");
             }
             else
@@ -54,7 +54,7 @@ namespace Dorothy.Controllers
         [Authorize]
         public async Task<IActionResult> Logout()
         {
-            await Context.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return Redirect("~/");
         }
 

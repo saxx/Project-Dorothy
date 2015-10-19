@@ -4,23 +4,18 @@ using Microsoft.Data.Entity.Infrastructure;
 using Microsoft.Data.Entity.Metadata;
 using Microsoft.Data.Entity.Migrations;
 using Dorothy.Models;
-using Microsoft.Data.Entity.SqlServer.Metadata;
 
 namespace Dorothy.Migrations
 {
     [DbContext(typeof(Db))]
+    [Migration("20151019124540_Initial")]
     partial class Initial
     {
-        public override string Id
-        {
-            get { return "20151015130338_Initial"; }
-        }
-
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Annotation("ProductVersion", "7.0.0-beta7-15540")
-                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerIdentityStrategy.IdentityColumn);
+                .Annotation("ProductVersion", "7.0.0-beta8-15964")
+                .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Dorothy.Models.Guest", b =>
                 {
@@ -41,7 +36,7 @@ namespace Dorothy.Migrations
 
                     b.Property<string>("Notes");
 
-                    b.Key("Id");
+                    b.HasKey("Id");
                 });
         }
     }

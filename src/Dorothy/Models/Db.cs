@@ -1,5 +1,4 @@
 ﻿using Microsoft.Data.Entity;
-using Microsoft.Data.Entity.Migrations;
 
 namespace Dorothy.Models
 {
@@ -15,7 +14,7 @@ namespace Dorothy.Models
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<Guest>().Key(v => v.Id);
+            builder.Entity<Guest>().HasKey(v => v.Id);
 
             base.OnModelCreating(builder);
         }
