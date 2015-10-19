@@ -55,13 +55,17 @@
     {
         <tr class="@( guest.IsOptional ? "text-muted" : "")">
             <th>
+                @if (guest.AdultCount <= 0)
+                {
+                    <span class="glyphicon glyphicon-flash error" title="Keine Erwachsenen angegeben"></span>
+                }
                 @if (guest.HasMissingName)
                 {
                     <span class="glyphicon glyphicon-user error" title="Name fehlt"></span>
                 }
                 @if (guest.HasMissingEmail)
                 {
-                    <span class="glyphicon glyphicon-envelope error" title="E-Mail-Adresse fehlt"></span>
+                    <span class="glyphicon glyphicon-envelope warning" title="E-Mail-Adresse fehlt"></span>
                 }
             </th>
             <td>

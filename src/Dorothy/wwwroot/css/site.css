@@ -9,7 +9,7 @@
     padding: 3px 6px;
 }
 
-.glyphicon.glyphicon-user.error {
+.glyphicon.error {
     background-color: red;
     color: white;
     padding: 3px;
@@ -17,7 +17,7 @@
     cursor: default;
 }
 
-.glyphicon.glyphicon-envelope.error {
+.glyphicon.warning {
     background-color: orange;
     color: black;
     padding: 3px;

@@ -38,7 +38,7 @@ namespace Dorothy.Models
             var splitNames = Names.Split(new[] {'&'}, StringSplitOptions.RemoveEmptyEntries);
             for (var i = 0; i < splitNames.Length; i++)
             {
-                var name = splitNames[i].Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+                var name = splitNames[i].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
                 if (i == 0)
                 {
                     result = "Hallo " + name + ",";
