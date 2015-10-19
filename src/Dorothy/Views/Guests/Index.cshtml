@@ -42,6 +42,7 @@
 
 <table class="table table-hover">
     <tr>
+        <th></th>
         <th>Name(n)</th>
         <th>Gruppe</th>
         <th>Anzahl</th>
@@ -53,8 +54,21 @@
     @foreach (var guest in Model.Guests)
     {
         <tr class="@( guest.IsOptional ? "text-muted" : "")">
+            <th>
+                @if (guest.HasMissingName)
+                {
+                    <span class="glyphicon glyphicon-user error" title="Name fehlt"></span>
+                }
+                @if (guest.HasMissingEmail)
+                {
+                    <span class="glyphicon glyphicon-envelope error" title="E-Mail-Adresse fehlt"></span>
+                }
+            </th>
             <td>
                 @guest.Names
+                <div class="text-muted salutation">
+                    @guest.GetSalutation()
+                </div>
             </td>
             <td>
                 <span class="label label-success">@guest.Group</span>
@@ -72,10 +86,10 @@
                 }
             </td>
             <td>
-                <a href="@Url.Action("Edit",new { guest.Id })" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+                <a href="@Url.Action("Edit", new {guest.Id})" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>
             <td>
-                <a href="@Url.Action("Delete",new { guest.Id })" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                <a href="@Url.Action("Delete", new {guest.Id})" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
             </td>
         </tr>
     }

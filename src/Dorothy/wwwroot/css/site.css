@@ -8,3 +8,23 @@
     color: white;
     padding: 3px 6px;
 }
+
+.glyphicon.glyphicon-user.error {
+    background-color: red;
+    color: white;
+    padding: 3px;
+    border-radius: 50%;
+    cursor: default;
+}
+
+.glyphicon.glyphicon-envelope.error {
+    background-color: orange;
+    color: black;
+    padding: 3px;
+    border-radius: 50%;
+    cursor: default;
+}
+
+.text-muted.salutation {
+    font-size: 9px;
+}

@@ -10,7 +10,12 @@ namespace Dorothy.ViewModels.Guests
     {
         public async Task<IndexViewModel> Fill(Db db)
         {
-            Guests = (await db.Guests.ToListAsync()).OrderBy(x => x.IsOptional).ThenBy(x => x.Group).ThenBy(x => x.Names);
+            Guests = (await db.Guests.ToListAsync())
+                .OrderBy(x => x.IsOptional)
+                .ThenBy(x => x.Group)
+                .ThenBy(x => x.Names)
+                .Select(x => new Guest(x))
+                .ToList();
 
             OverallCount = new GroupCount
             {
@@ -59,6 +64,18 @@ namespace Dorothy.ViewModels.Guests
             public int OptionalChildCount { get; set; }
 
             public bool HasAny => AdultCount + ChildCount + OptionalAdultCount + OptionalChildCount > 0;
+        }
+
+        public class Guest : Models.Guest
+        {
+            public Guest(Models.Guest guest)
+            {
+                AutoMapper.Mapper.CreateMap(typeof(Models.Guest), typeof (Guest));
+                AutoMapper.Mapper.Map(guest, this);
+            }
+
+            public bool HasMissingName => this.Names == null || this.Names.IndexOf('?') >= 0;
+            public bool HasMissingEmail => !this.ExtractEmailAdresses().Any();
         }
     }
 }
