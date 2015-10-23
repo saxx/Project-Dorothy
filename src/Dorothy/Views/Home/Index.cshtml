@@ -1,19 +1,8 @@
 ﻿@model Dorothy.ViewModels.Home.IndexViewModel
 
-
-<h1>Projekt Dorothy <small>Weitergehen, es gibt hier nichts zu sehen.</small></h1>
-
-<hr/>
-
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary()
-
-    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
-        @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
-    </div>
-
-    <input type="submit" value="Weiter" class="btn btn-primary btn-lg" />
-}
+<h1>
+    Christina und Hannes heiraten ...
+    <small>
+        More coming soon <span class="glyphicon glyphicon-hourglass"></span>
+    </small>
+</h1>

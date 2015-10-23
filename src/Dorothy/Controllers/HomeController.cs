@@ -4,6 +4,7 @@ using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Authorization;
 using System.Security.Claims;
 using Dorothy.Models;
+using Dorothy.ViewModels.Home;
 
 namespace Dorothy.Controllers
 {
@@ -16,49 +17,64 @@ namespace Dorothy.Controllers
             _config = config;
         }
 
-        [AllowAnonymous]
+
         public IActionResult Index()
+        {
+            return View(new IndexViewModel());
+        }
+
+
+        [Route("~/Login")]
+        public IActionResult Login()
         {
             if (User.Identity.IsAuthenticated)
             {
                 return RedirectToAction("Index", "User");
             }
-            return View();
+            return View(new LoginViewModel());
         }
 
-        [AllowAnonymous, HttpPost]
-        public async Task<IActionResult> Index(string password)
+
+        [HttpPost]
+        [Route("~/Login")]
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
-            if (password == _config.UserPassword)
+            if (ModelState.IsValid)
             {
-                var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "User") };
-                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-                return RedirectToAction("Index", "User");
-            }
-            else if (password == _config.AdminPassword)
-            {
-                var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "Admin") };
-                var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-                await HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(identity));
-                return RedirectToAction("Index", "User");
-            }
-            else
-            {
-                ModelState.AddModelError("", "Passwort ungültig.");
+                if (model.Password == _config.UserPassword)
+                {
+                    var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "User") };
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    await
+                        HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(identity));
+                    return RedirectToAction("Index", "User");
+                }
+
+                if (model.Password == _config.AdminPassword)
+                {
+                    var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "Admin") };
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    await
+                        HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(identity));
+                    return RedirectToAction("Index", "User");
+                }
+
+                ModelState.AddModelError("Password", "Passwort ungültig.");
             }
 
-            return View();
+            return View(model);
         }
 
         [Authorize]
         public async Task<IActionResult> Logout()
         {
             await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            return Redirect("~/");
+            return RedirectToAction("Index");
         }
 
-        [AllowAnonymous]
+
         public IActionResult Error()
         {
             return View("~/Views/Shared/Error.cshtml");

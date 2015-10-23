@@ -49,6 +49,8 @@
         <th>Notizen</th>
         <th>Einladung erhalten</th>
         <th></th>
+        <th></th>
+        <th></th>
     </tr>
 
     @foreach (var guest in Model.Guests)
@@ -89,6 +91,9 @@
                     <span class="glyphicon glyphicon-ok"></span>
                 }
             </td>
+            <th>
+                <a href="@guest.GetSaveTheDateLink(Context.Request)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-time"></span></a>
+            </th>
             <td>
                 <a href="@Url.Action("Edit", new {guest.Id})" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
             </td>

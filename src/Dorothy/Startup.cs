@@ -47,7 +47,7 @@ namespace Dorothy
 
             app.UseCookieAuthentication(options => {
                 options.AutomaticAuthentication = true;
-                options.LoginPath = "/";
+                options.LoginPath = "/Login";
             });
 
             // Configure the HTTP request pipeline.

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Microsoft.AspNet.Http;
 
 namespace Dorothy.Models
 {
@@ -35,7 +36,7 @@ namespace Dorothy.Models
             }
 
             var result = "";
-            var splitNames = Names.Split(new[] {'&'}, StringSplitOptions.RemoveEmptyEntries);
+            var splitNames = Names.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
             for (var i = 0; i < splitNames.Length; i++)
             {
                 var name = splitNames[i].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
@@ -50,6 +51,17 @@ namespace Dorothy.Models
             }
 
             return result;
+        }
+
+
+        public string GetSaveTheDateLink(HttpRequest request)
+        {
+            return request.Scheme + "://" + request.Host + "/SaveTheDate/" + GetUniqueToken();
+        }
+
+        public string GetUniqueToken()
+        {
+            return Math.Abs(Id.ToString().GetHashCode()).ToString();
         }
     }
 }
