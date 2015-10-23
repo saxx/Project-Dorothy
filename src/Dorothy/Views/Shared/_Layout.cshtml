@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-file-version="true" />
 </head>
-<body>
+<body class="@ViewBag.BodyCssClass">
     @if (User.Identity.IsAuthenticated)
     {
         <div class="navbar navbar-inverse navbar-fixed-top">

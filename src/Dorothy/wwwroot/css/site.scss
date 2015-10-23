@@ -1,6 +1,9 @@
-﻿body {
+﻿@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-family: 'Open Sans', sans-serif;
 }
 
 .field-validation-error, .validation-summary-errors {
@@ -32,20 +35,38 @@
     font-size: 9px;
 }
 
-.page {
-    &.save-the-date {
-        h1 {
-            text-align: center;
-            font-size: 40px;
-        }
-        h2 {
-            text-align: center;
-            font-size: 30px;
-        }
-        h3 {
-            text-align: center;
-            font-size: 30px;
-        }
+body.save-the-date {
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 17px;
+    hyphens: manual;
 
+    a, a:hover {
+        color: #333;
+    } 
+
+    h1 {
+        text-align: center;
+        font-size: 45px;
+        font-weight: bold;
+    }
+    h2 {
+        text-align: center;
+        font-size: 35px;
+    }
+    h3 {
+        text-align: center;
+        font-size: 30px;
+        span {
+            font-size: 25px;
+        }
+    }
+
+    .well {
+         background-color: rgba(255, 255, 255, 0.75);
     }
 }

@@ -1,54 +1,68 @@
 ﻿@model Dorothy.ViewModels.SaveTheDate.IndexViewModel
+@{
+    ViewBag.BodyCssClass = "save-the-date";
+}
 
-<div class="page save-the-date">
+<div class="row">
+        
+    <div class="col-lg-6">
+        <div class="well">
+            <h2>
+                Save the date
+            </h2>
 
-    <div class="row">
-        
-        <div class="col-lg-6">
-            <div class="well">
-                <h2>
-                    Save the date
-                </h2>
-            
-                <h1>
-                    3. September 2016
-                </h1>
-            
-                <h2>
-                    <span class="glyphicon glyphicon-time"></span> 16:00 Uhr<br />
-                    <span class="glyphicon glyphicon-map-marker"></span> Linz (Treffling)
-                </h2>
-            </div>
+            <hr/>
+
+            <h1>
+                3. September 2016
+            </h1>
+
+            <hr/>
+
+            <h3>
+                <span class="glyphicon glyphicon-time"></span> 16:00 Uhr<br />
+                <span class="glyphicon glyphicon-map-marker"></span> Linz (Treffling)
+            </h3>
         </div>
-        
-        <div class="col-lg-6">
-            <div class="well">
-                <p>
-                    @(Model.Salutation ?? "Hallo,")
-                </p>
-                
-                <p>
-                    jup, wir heiraten. Ist ja auch endlich mal der Zeit, das mit dem Kind haben wir ja irgendwie schon übersehen. 
-                    Und wir würden uns sehr freuen, wenn du mit uns feierst.
-                </p>
-                
-                <p>
-                    Du wirst natürlich noch eine ordentliche Einladung von uns bekommen.
-                    Das kann aber noch ein bisschen dauern. Deswegen haben wir uns gedacht, dass eine Vorwarnung durchaus nützlich sein könnte.
-                    Nun, du bist hiermit vorgewarnt.
-                </p>
-                
-                <p>
-                    Liebe Grüße,<br />
-                    ~ Christina und Hannes
-                </p>
-                
-                <p>
-                    ps: Du kannst uns unter <a href="mailto:cfeilmayr@icloud.com">cfeilmayr@icloud.com</a> oder 
-                    <a href="mailto:hannes@sachsenhofer.com">hannes@sachsenhofer.com</a> erreichen. Zum Beispiel bei Fragen, oder auch einfach so.
-                </p>
-            </div>
-        </div>
-    
     </div>
+        
+    <div class="col-lg-6">
+        <div class="well">
+            <p>
+                <b>@(Model.Salutation ?? "Hallo,")</b>
+            </p>
+
+            <hr/>
+
+            <p>
+                jup, wir heiraten. Ist ja auch end&shy;lich mal an der Zeit, das mit dem Kind haben wir ja irgend&shy;wie schon über&shy;sehen.
+            </p>
+
+            <p>
+                Wir würden uns sehr freuen, wenn du mit uns feierst.
+            </p>
+                
+            <p>
+                Du wirst natürlich noch eine ordent&shy;liche Ein&shy;ladung von uns be&shy;kom&shy;men, so wie sich das gehört.
+                Das kann aber noch ein bis&shy;schen dauern. Des&shy;wegen haben wir uns ge&shy;dacht, dass eine Vor&shy;warnung schon jetzt nütz&shy;lich sein könnte.
+                Nun, du bist hier&shy;mit vorgewarnt.
+            </p>
+
+            <p>
+                Liebe Grüße,
+            </p>
+
+            <p>
+                <b>Christina und Hannes</b>
+            </p>
+
+            <hr/>
+
+            <p>
+                ps: Du kannst uns unter <a href="mailto:cfeilmayr@icloud.com">cfeilmayr@icloud.com</a> oder 
+                <a href="mailto:hannes@sachsenhofer.com">hannes@sachsenhofer.com</a> er&shy;reichen. Zum Bei&shy;spiel bei Fragen, oder auch einfach nur so.
+            </p>
+        </div>
+    </div>
+    
 </div>
