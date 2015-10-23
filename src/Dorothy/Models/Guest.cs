@@ -37,16 +37,23 @@ namespace Dorothy.Models
 
             var result = "";
             var splitNames = Names.Split(new[] { '&' }, StringSplitOptions.RemoveEmptyEntries);
+
+            if (splitNames.Length == 1)
+            {
+                var firstName = splitNames[0].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+                return "Hallo " + firstName + ",";
+            }
+
             for (var i = 0; i < splitNames.Length; i++)
             {
-                var name = splitNames[i].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
+                var firstName = splitNames[i].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries)[0].Trim();
                 if (i == 0)
                 {
-                    result = "Hallo " + name + ",";
+                    result = "Liebe " + firstName + ",";
                 }
                 else
                 {
-                    result += " hallo " + name + ",";
+                    result += " lieber " + firstName + ",";
                 }
             }
 
