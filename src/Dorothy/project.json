@@ -44,6 +44,6 @@
   ],
   "scripts": {
     "postrestore": [ "npm install" ],
-    "prepare": [ "gulp uglify", "gulp sass" ]
+    "prepare": [ "gulp js", "gulp css" ]
   }
 }
