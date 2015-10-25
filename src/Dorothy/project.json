@@ -43,6 +43,7 @@
     "**.vspscc"
   ],
   "scripts": {
-    "prepublish": [  ]
+    "postrestore": [ "npm install" ],
+    "prepare": [ "gulp uglify", "gulp sass" ]
   }
 }
