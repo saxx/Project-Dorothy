@@ -70,7 +70,6 @@ namespace Dorothy.ViewModels.Guests
         {
             public Guest(Models.Guest guest)
             {
-                AutoMapper.Mapper.CreateMap(typeof(Models.Guest), typeof (Guest));
                 AutoMapper.Mapper.Map(guest, this);
             }
 

@@ -1,4 +1,5 @@
 ﻿using Dorothy.Models;
+using Dorothy.ViewModels.Guests;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
@@ -80,6 +81,16 @@ namespace Dorothy
                 // Uncomment the following line to add a route for porting Web API 2 controllers.
                 // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
+
+            CreateAutoMapperMappings();
+        }
+
+        private void CreateAutoMapperMappings()
+        {
+            AutoMapper.Mapper.CreateMap(typeof(CreateViewModel), typeof(Guest));
+            AutoMapper.Mapper.CreateMap(typeof(EditViewModel), typeof(Guest));
+            AutoMapper.Mapper.CreateMap(typeof(Guest), typeof(EditViewModel));
+            AutoMapper.Mapper.CreateMap(typeof(Guest), typeof(IndexViewModel.Guest));
         }
     }
 }

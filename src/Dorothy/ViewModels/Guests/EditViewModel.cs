@@ -10,13 +10,7 @@ namespace Dorothy.ViewModels.Guests
         {
             await base.Fill(db);
 
-            Names = guest.Names;
-            AdultCount = guest.AdultCount;
-            ChildCount = guest.ChildCount;
-            IsOptional = guest.IsOptional;
-            HasInvitation = guest.HasInvitation;
-            Notes = guest.Notes;
-            Group = guest.Group;
+            AutoMapper.Mapper.Map(guest, this);
 
             return this;
         }

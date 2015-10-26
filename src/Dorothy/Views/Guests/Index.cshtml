@@ -47,7 +47,7 @@
         <th>Gruppe</th>
         <th>Anzahl</th>
         <th>Notizen</th>
-        <th>Einladung erhalten</th>
+        <th colspan="2">Eingeladen?</th>
         <th></th>
         <th></th>
         <th></th>
@@ -86,9 +86,14 @@
                 @guest.Notes
             </td>
             <td>
+                @if (guest.HasEmail)
+                {
+                    <span class="glyphicon glyphicon-ok-circle" title="E-Mail bekommen"></span>
+                }
+            <td>
                 @if (guest.HasInvitation)
                 {
-                    <span class="glyphicon glyphicon-ok"></span>
+                    <span class="glyphicon glyphicon-ok" title="Einladung bekommen"></span>
                 }
             </td>
             <th>

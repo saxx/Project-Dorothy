@@ -37,17 +37,8 @@ namespace Dorothy.Controllers
         {
             if (ModelState.IsValid)
             {
-                var guest = new Guest
-                {
-                    Names = model.Names,
-                    AdultCount = model.AdultCount,
-                    ChildCount = model.ChildCount,
-                    HasInvitation = model.HasInvitation,
-                    IsOptional = model.IsOptional,
-                    Notes = model.Notes,
-                    Group = model.Group
-                };
-
+                var guest = new Guest();
+                AutoMapper.Mapper.Map(model, guest);
                 _db.Guests.Add(guest);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -80,14 +71,7 @@ namespace Dorothy.Controllers
             var guest = await _db.Guests.FirstOrDefaultAsync(x => x.Id == id);
             if (guest != null)
             {
-                guest.Names = model.Names;
-                guest.AdultCount = model.AdultCount;
-                guest.ChildCount = model.ChildCount;
-                guest.HasInvitation = model.HasInvitation;
-                guest.IsOptional = model.IsOptional;
-                guest.Notes = model.Notes;
-                guest.Group = model.Group;
-
+                AutoMapper.Mapper.Map(model, guest);
                 await _db.SaveChangesAsync();
             }
 

@@ -14,6 +14,7 @@ namespace Dorothy.Models
         public int ChildCount { get; set; }
         public bool IsOptional { get; set; }
         public bool HasInvitation { get; set; }
+        public bool HasEmail { get; set; }
         public string Notes { get; set; }
         public string Group { get; set; }
 

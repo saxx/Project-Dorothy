@@ -47,7 +47,14 @@
 
         <div class="checkbox">
             <label>
-                @Html.EditorFor(x => x.HasInvitation) Einladung erhalten
+                @Html.EditorFor(x => x.HasEmail) E-Mail zugeschickt
+                @Html.ValidationMessageFor(x => x.HasEmail)
+            </label>
+        </div>
+
+        <div class="checkbox">
+            <label>
+                @Html.EditorFor(x => x.HasInvitation) Einladung übergeben
                 @Html.ValidationMessageFor(x => x.HasInvitation)
             </label>
         </div>
