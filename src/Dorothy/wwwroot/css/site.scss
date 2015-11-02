@@ -5,10 +5,21 @@
 }
 
 .field-validation-error, .validation-summary-errors {
-    background-color: red;
-    color: white;
-    padding: 3px 6px;
+    background-color: #f2dede;
+    color: #a94442;
+    border-color: #ebccd1;
+    padding: 15px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+
+    ul {
+        margin:0;
+        padding:0;
+        list-style-type: none;
+        list-style-position: inside;
+    }
 }
+
 
 @mixin glyphicon-error() {
     color: white;
@@ -16,6 +27,7 @@
     border-radius: 50%;
     cursor: default;
 }
+
 
 .glyphicon {
     &.error {
@@ -33,6 +45,27 @@
     font-size: 9px;
 }
 
+body.login {
+    .well {
+        label, input, .btn {
+            font-size: 20px;
+            height: 40px;
+            padding: 0 12px;
+            display: block;
+            margin:0;
+        }
+
+        label {
+            text-align: center;
+        }
+
+        .btn {
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+}
+
 body.save-the-date {
     background: url('../images/background.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -45,26 +78,29 @@ body.save-the-date {
 
     a, a:hover {
         color: #333;
-    } 
+    }
 
     h1 {
         text-align: center;
         font-size: 45px;
         font-weight: bold;
     }
+
     h2 {
         text-align: center;
         font-size: 35px;
     }
+
     h3 {
         text-align: center;
         font-size: 30px;
+
         span {
             font-size: 25px;
         }
     }
 
     .well {
-         background-color: rgba(255, 255, 255, 0.75);
+        background-color: rgba(255, 255, 255, 0.75);
     }
 }

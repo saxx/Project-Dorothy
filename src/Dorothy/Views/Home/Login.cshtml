@@ -1,19 +1,40 @@
 ﻿@model Dorothy.ViewModels.Home.LoginViewModel
 
+@{
+    ViewBag.BodyCssClass = "login";
+}
 
-<h1>Ohne Passwort kommt man hier nicht weiter ...</h1>
+<div class="row">
+    <div class="col-md-6">
 
-<hr/>
+        <h2>Christina und Hannes heiraten</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.ValidationSummary()
+        <p>
+            Auf dieser Seite findest du alle wichtigen (und weniger wichtigen) Informationen zur Hochzeit gesammelt und aktuell gehalten.
+        </p>
 
-    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-    <div class="col-md-10">
-        @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
-        @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
+        <p>
+            <b>Ohne Passwort kommst du hier aber nicht weiter</b>
+        </p>
+
+        <p>
+          Als geladener Gast findest du das Passwort auf der Einladung. Solltest du Probleme haben, dann kontaktiere bitte Christina oder Hannes.
+        </p>
+
     </div>
 
-    <input type="submit" value="Weiter" class="btn btn-primary btn-lg" />
-}
+    <div class="col-md-6">
+        <div class="well">
+            <form method="POST">
+                @Html.ValidationSummary()
+
+                <div class="form-group">
+                    <label for="Password" class="control-label"><span class="glyphicon glyphicon-pencil"></span> Passwort</label>
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Hier bitte das Passwort eingeben ..." } })
+                </div>
+
+                <input type="submit" value="Weiter" class="btn btn-success" />
+            </form>
+        </div>
+    </div>
+</div>

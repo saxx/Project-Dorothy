@@ -65,7 +65,7 @@ namespace Dorothy.Controllers
                     return RedirectToAction("Index", "User");
                 }
 
-                ModelState.AddModelError("Password", "Passwort ungültig.");
+                ModelState.AddModelError("Password", "Hmm, das Passwort scheint ungültig zu sein. Bitte versuche es mit dem richtigen Passwort noch einmal.");
             }
 
             return View(model);
