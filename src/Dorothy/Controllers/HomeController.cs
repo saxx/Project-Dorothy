@@ -20,7 +20,11 @@ namespace Dorothy.Controllers
 
         public IActionResult Index()
         {
-            return View(new IndexViewModel());
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "User");
+            }
+            return RedirectToAction("Login");
         }
 
 
