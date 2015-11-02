@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Christina und Hannes heiraten</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans" type='text/css'>
     <link rel="stylesheet" href="~/css/site.min.css" asp-file-version="true" />
 </head>
@@ -20,15 +20,31 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a asp-controller="User" asp-action="Index" class="navbar-brand">Dorothy</a>
+                    <a asp-controller="User" asp-action="Index" class="navbar-brand">Christina und Hannes heiraten</a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
+
+                        <li><a asp-controller="Rsvp" asp-action="Index">RSVP</a></li>
+                        <li><a asp-controller="Photos" asp-action="Index">Fotos</a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Die Hochzeit <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a asp-controller="User" asp-action="Route">Anreise</a></li>
+                                <li><a asp-controller="User" asp-action="Agenda">Programm</a></li>
+                                <li><a asp-controller="User" asp-action="Faq">FAQ</a></li>
+                            </ul>
+                        </li>
+
                         @if (User.IsInRole("Admin"))
                         {
-                            <li><a asp-controller="Guests" asp-action="Index">Gäste verwalten</a></li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Administration <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a asp-controller="Guests" asp-action="Index">Gäste verwalten</a></li>
+                                </ul>
+                            </li>
                         }
-                        <li><a asp-controller="Home" asp-action="Logout">Log out</a></li>
                     </ul>
                 </div>
             </div>

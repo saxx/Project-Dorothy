@@ -21,5 +21,20 @@ namespace Dorothy.Controllers
         {
             return View(new IndexViewModel());
         }
+
+        public IActionResult Route()
+        {
+            return View();
+        }
+
+        public IActionResult Agenda()
+        {
+            return View();
+        }
+
+        public IActionResult Faq()
+        {
+            return View(new IndexViewModel());
+        }
     }
 }
