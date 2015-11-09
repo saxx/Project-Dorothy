@@ -8,8 +8,8 @@ using Dorothy.Models;
 namespace Dorothy.Migrations
 {
     [DbContext(typeof(Db))]
-    [Migration("20151109185834_Rsvps")]
-    partial class Rsvps
+    [Migration("20151109191957_RsvpDate")]
+    partial class RsvpDate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -50,9 +50,13 @@ namespace Dorothy.Migrations
 
                     b.Property<int>("ChildCount");
 
+                    b.Property<DateTime>("DateTime");
+
                     b.Property<string>("Name");
 
                     b.Property<string>("Note");
+
+                    b.Property<int>("Type");
 
                     b.HasKey("Id");
                 });

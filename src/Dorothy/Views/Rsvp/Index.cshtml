@@ -1,0 +1,116 @@
+﻿@using System.Threading.Tasks
+@using Dorothy.Models
+@model Dorothy.ViewModels.Rsvp.IndexViewModel
+
+@{
+    ViewBag.BodyCssClass = "rsvp";
+
+    var rsvpTypes = new List<SelectListItem>()
+    {
+        new SelectListItem
+        {
+            Text = "ich komme",
+            Value = RsvpType.Yes.ToString()
+        },
+        new SelectListItem
+        {
+            Text = "ich komme vielleicht",
+            Value = RsvpType.Maybe.ToString()
+        },
+        new SelectListItem
+        {
+            Text = "ich komme nicht",
+            Value = RsvpType.No.ToString()
+        }
+    };
+}
+
+<h2>An-/Abmeldung (RSVP) <small>Répondez s'il vous plaît</small></h2>
+
+<div class="row">
+
+    <div class="col-md-6">
+        Du kannst uns ungemein bei der Planung helfen, wenn du uns über dieses Formular kurz Rückmeldung gibst, ob du zu unserer Hochzeit kommen kannst (magst?) oder verhindert bist.
+        <br /><br />
+        <b>Deine Partnerin oder dein Partner ist natürlich ebenso herzlich eingeladen, ebenso deine Kinder!</b>
+        <br /><br />
+        Übrigens kannst du deine An- oder Abmeldung über dieses Formular jederzeit auch wieder ändern, gib einfach deinen Namen genau so ein wie zuvor.
+    </div>
+
+    <div class="col-md-6">
+        <div class="well">
+
+            <form method="POST">
+
+                @if (Model.DisplaySuccessMessage)
+            {
+                    <div class="alert alert-success">
+                        <p>
+                            Vielen Dank für deine Rückmeldung. Sie ist bei uns angekommen.
+                        </p>
+                        @if (Model.Type == RsvpType.Yes)
+                        {
+                            <p>
+                                <b>Es freut uns sehr, dass du kommen kannst :-)</b>
+                            </p>
+                        }
+                        @if (Model.Type == RsvpType.No)
+                        {
+                            <p>
+                                <b>Schade, dass du nicht kommen kannst :-(</b>
+                            </p>
+                        }
+                        @if (Model.Type == RsvpType.Maybe)
+                        {
+                            <p>
+                                <b>Hoffentlich kannst du schlussendlich doch kommen. Bitte gib uns Bescheid, sobald du Genaueres weißt.</b>
+                            </p>
+                        }
+                    </div>
+                }
+
+                @if (Model.DisplayOverwriteMessage)
+            {
+                    <div class="alert alert-warning">
+                        <p>
+                            Es gibt bereits einen Eintrag unter diesem Namen. Vermutlich ist das deiner, oder?
+                            Möchtest du ihn überschreiben?
+                        </p>
+                        <p>
+                            <input type="submit" value="Ja, überschreiben" class="btn btn-warning" />
+                            <a asp-action="Index" class="btn btn-default">Nein, abbrechen</a>
+                        </p>
+                        <input type="hidden" name="overwrite" value="True" />
+                    </div>
+                }
+
+
+                @Html.ValidationSummary()
+
+                <div class="form-group">
+                    Ich bin @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Dein Name ..." } })
+                </div>
+
+                <div class="form-group">
+                    und @Html.DropDownListFor(x => x.Type, rsvpTypes, new { @class = "form-control" }) zu eurer Hochzeit.
+                </div>
+
+                <div class="form-group">
+                    Mich werden @Html.EditorFor(model => model.AdultsCount, new { htmlAttributes = new { @class = "form-control" } }) Erwachsene und
+                    @Html.EditorFor(model => model.ChildCount, new { htmlAttributes = new { @class = "form-control" } }) Kinder begleiten.
+                </div>
+
+                <div class="form-group">
+                    Ich habe auch noch eine Anmerkung:
+                    @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", placeholder = "Optional, nur wenn du noch etwas dazu sagen magst ..." } })
+                </div>
+
+                @if (!Model.DisplaySuccessMessage && !Model.DisplayOverwriteMessage)
+                {
+                    <input type="submit" value="Speichern" class="btn btn-success" />
+                }
+            </form>
+        </div>
+    </div>
+
+</div>

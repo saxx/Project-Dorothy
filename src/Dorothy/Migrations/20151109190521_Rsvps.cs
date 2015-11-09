@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Microsoft.Data.Entity.Migrations;
 using Microsoft.Data.Entity.Metadata;
 
@@ -16,7 +18,8 @@ namespace Dorothy.Migrations
                     AdultsCount = table.Column<int>(nullable: false),
                     ChildCount = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
-                    Note = table.Column<string>(nullable: true)
+                    Note = table.Column<string>(nullable: true),
+                    Type = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

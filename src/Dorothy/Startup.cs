@@ -91,6 +91,7 @@ namespace Dorothy
             AutoMapper.Mapper.CreateMap(typeof(EditViewModel), typeof(Guest));
             AutoMapper.Mapper.CreateMap(typeof(Guest), typeof(EditViewModel));
             AutoMapper.Mapper.CreateMap(typeof(Guest), typeof(IndexViewModel.Guest));
+            AutoMapper.Mapper.CreateMap(typeof(ViewModels.Rsvp.IndexViewModel), typeof(Rsvp));
         }
     }
 }
