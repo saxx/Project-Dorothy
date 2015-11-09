@@ -39,6 +39,10 @@
         @include glyphicon-error;
         background-color: orange;
     }
+
+    &.huge {
+        font-size: 100px;
+    }
 }
 
 .text-muted.salutation {
