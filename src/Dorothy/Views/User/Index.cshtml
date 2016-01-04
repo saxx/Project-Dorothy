@@ -57,9 +57,9 @@
                     Beispielsweise wenn du noch eine Frage hast, die wir hier noch nicht beantwortet haben, oder auch einfach nur so.
                 </p>
 
-                <p><b>Christina</b><br/><span class="glyphicon glyphicon-envelope"></span> cfeilmayr@icloud.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0699 11092784</p>
+                <p><b>Christina</b><br /><span class="glyphicon glyphicon-envelope"></span> cfeilmayr@icloud.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0699 11092784</p>
 
-                <p><b>Hannes</b><br/><span class="glyphicon glyphicon-envelope"></span> hannes@sachsenhofer.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0677 61603456</p>
+                <p><b>Hannes</b><br /><span class="glyphicon glyphicon-envelope"></span> hannes@sachsenhofer.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0677 61603456</p>
             </div>
 
 
@@ -69,14 +69,32 @@
 
     <div class="col-md-4">
         <div class="date-box well">
-            <p>
-                3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 16:00 Uhr
-            </p>
-            <p>
-                <a asp-action="Route">
-                    <span class="glyphicon glyphicon-map-marker"></span> Linz (Treffling)
-                </a>
-            </p>
+            @if (User.IsInRole("User"))
+            {
+                <text>
+                <p>
+                    3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 16:00 Uhr
+                </p>
+                <p>
+                    <a asp-action="Route">
+                        <span class="glyphicon glyphicon-map-marker"></span> Treffling bei Linz
+                    </a>
+                </p>
+                </text>
+            }
+            else
+            {
+                <text>
+                <p>
+                    3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 14:30 Uhr
+                </p>
+                <p>
+                    <a asp-action="Route">
+                        <span class="glyphicon glyphicon-map-marker"></span> Landesmuseum Linz
+                    </a>
+                </p>
+                </text>
+            }
             <p>
                 Noch @days Tage ...
             </p>
