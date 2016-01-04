@@ -6,14 +6,14 @@ install:
 - ps: Install-Product node $env:nodejs_version
 - npm --prefix .\src\Dorothy install .\src\Dorothy
 - npm install -g gulp
-- dnvm install -arch x64 1.0.0-beta8
-- dnvm install -arch x86 1.0.0-beta8
-- dnvm use -arch x86 1.0.0-beta8
+- dnvm install -arch x64 1.0.0-rc1-update1
+- dnvm install -arch x86 1.0.0-rc1-update1
+- dnvm use -arch x86 1.0.0-rc1-update1
 - dnu restore ".\src\Dorothy"
 
 build_script:
 - SET PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-- CALL dnu publish ".\src\Dorothy" --out "%APPVEYOR_BUILD_FOLDER%\artifacts\publish" --configuration Release --no-source --runtime dnx-clr-win-x64.1.0.0-beta8 --wwwroot-out "wwwroot" --quiet
+- CALL dnu publish ".\src\Dorothy" --out "%APPVEYOR_BUILD_FOLDER%\artifacts\publish" --configuration Release --no-source --runtime dnx-clr-win-x64.1.0.0-rc1-update1 --wwwroot-out "wwwroot" --quiet
 
 artifacts:
 - path: artifacts/publish
