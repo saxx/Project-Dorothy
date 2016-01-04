@@ -1,1 +1,42 @@
-﻿Agenda.
+﻿<h1>Programm</h1>
+
+
+<table class="table table-hover">
+
+    @if (User.IsInRole("Insider") || User.IsInRole("Admin"))
+    {
+        <tr>
+            <td>14:30</td>
+            <td>Standesamtliche Trauung (im kleinen Kreis)</td>
+        </tr>
+        <tr>
+            <td>ca. 15:00</td>
+            <td>Sekt schlürfen</td>
+        </tr>
+        <tr>
+            <td>ca. 15:45</td>
+            <td>Abmarsch Richtung Kulturstadl Reckeneder</td>
+        </tr>
+    }
+
+    <tr>
+        <td>Sechzehn Uhr</td>
+        <td>Empfang beim Kulturstadl Reckeneder</td>
+    </tr>
+
+    <tr>
+        <td>circa Achtzehn Uhr Dreißig</td>
+        <td>Eröffnung des Buffets</td>
+    </tr>
+
+    <tr>
+        <td>circa Zwanzig Uhr Dreißig</td>
+        <td>Anschneiden der Torte & Eröffnung des Dessertbuffets</td>
+    </tr>
+
+    <tr>
+        <td>circa ab Einundzwanzig Uhr</td>
+        <td>Nun beginnt endlich die eigentliche Hochzeit: Party mit DJ und Cocktails.</td>
+    </tr>
+</table>
+
