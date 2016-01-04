@@ -3,10 +3,11 @@ using Dorothy.ViewModels.Guests;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
-using Microsoft.Framework.Configuration;
-using Microsoft.Framework.DependencyInjection;
-using Microsoft.Framework.Logging;
 using Microsoft.Dnx.Runtime;
+using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 
 namespace Dorothy
 {
@@ -16,7 +17,6 @@ namespace Dorothy
         {
             // Setup configuration sources.
             var builder = new ConfigurationBuilder()
-                .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables("Dorothy:");
             Configuration = builder.Build();
@@ -46,8 +46,10 @@ namespace Dorothy
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
 
-            app.UseCookieAuthentication(options => {
-                options.AutomaticAuthentication = true;
+            app.UseCookieAuthentication(options =>
+            {
+                options.AutomaticAuthenticate = true;
+                options.AutomaticChallenge = true;
                 options.LoginPath = "/Login";
             });
 
