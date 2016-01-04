@@ -45,9 +45,19 @@ namespace Dorothy.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.Password == _config.UserPassword)
+                if (model.Password == _config.NormalUserPassword)
                 {
                     var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "User") };
+                    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+                    await
+                        HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(identity));
+                    return RedirectToAction("Index", "User");
+                }
+
+                if (model.Password == _config.InsiderUserPassword)
+                {
+                    var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "Insider") };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await
                         HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,

@@ -6,13 +6,19 @@ namespace Dorothy.Models
     {
         public Configuration(IConfiguration config)
         {
-            UserPassword = config["userPassword"];
+            NormalUserPassword = config["userPassword"];
+            InsiderUserPassword = config["insiderPassword"];
             AdminPassword = config["adminPassword"];
             ConnectionString = config["connectionString"];
 
-            if (string.IsNullOrWhiteSpace(UserPassword))
+            if (string.IsNullOrWhiteSpace(NormalUserPassword))
             {
-                UserPassword = "userP4ss";
+                NormalUserPassword = "userP4ss";
+            }
+
+            if (string.IsNullOrWhiteSpace(InsiderUserPassword))
+            {
+                InsiderUserPassword = "insiderP4ss";
             }
 
             if (string.IsNullOrEmpty(AdminPassword))
@@ -26,7 +32,8 @@ namespace Dorothy.Models
             }
         }
 
-        public string UserPassword { get; }
+        public string NormalUserPassword { get; }
+        public string InsiderUserPassword { get; }
         public string AdminPassword { get; }
 
         public string ConnectionString { get; }
