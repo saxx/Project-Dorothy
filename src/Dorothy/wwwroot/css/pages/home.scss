@@ -1,0 +1,21 @@
+﻿body.home {
+    .glyphicon {
+        font-size: 90%;
+        color: #777;
+    }
+
+    .date-box {
+        font-size: 22px;
+        text-align: center;
+
+        img {
+            height: 100px;
+            margin: 20px auto 0 auto;
+        }
+
+
+        p:last-of-type {
+            font-size: 16px;
+        }
+    }
+}

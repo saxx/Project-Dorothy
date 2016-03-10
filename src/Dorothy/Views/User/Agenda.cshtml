@@ -1,42 +1,63 @@
-﻿<h1>Programm</h1>
+﻿
 
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Programm</h2>
 
-<table class="table table-hover">
+        @if (User.IsInRole("Insider") || User.IsInRole("Admin"))
+        {
+            <p>
+                Wir freuen uns, wenn du mit uns sowohl unsere standesamtliche Trauung im kleinen feierst, als auch direkt im Anschluss das große Hochzeitsfest in Treffling.
+            </p>
+        }
+        else
+        {
+            <p>
+                Wir freuen uns sehr, wenn du mit uns unser Hochzeitsfest in Treffling feierst.
+                Direkt vorher findet in Linz die standesamtliche Trauung im kleinen Kreis statt - wir treffen also direkt frischvermählt am Fest ein.
+            </p>
+        }
 
-    @if (User.IsInRole("Insider") || User.IsInRole("Admin"))
-    {
-        <tr>
-            <td>14:30</td>
-            <td>Standesamtliche Trauung (im kleinen Kreis)</td>
-        </tr>
-        <tr>
-            <td>ca. 15:00</td>
-            <td>Sekt schlürfen</td>
-        </tr>
-        <tr>
-            <td>ca. 15:45</td>
-            <td>Abmarsch Richtung Kulturstadl Reckeneder</td>
-        </tr>
-    }
+        <table class="table">
+            @if (User.IsInRole("Insider") || User.IsInRole("Admin"))
+            {
+                <tr>
+                    <th>Vierzehn Uhr</th>
+                    <td>Treffen in der Landesgalerie</td>
+                </tr>
+                <tr>
+                    <th>Vierzen Uhr Dreißig</th>
+                    <td>Standesamtliche Trauung</td>
+                </tr>
+                <tr>
+                    <th>circa Fünfzehn Uhr</th>
+                    <td>Sektempfang in der Landesgalerie</td>
+                </tr>
+                <tr>
+                    <th>circa Fünfzehn Fünfundvierzig</th>
+                    <td>Abmarsch Richtung Kulturstadl Reckeneder</td>
+                </tr>
+            }
 
-    <tr>
-        <td>Sechzehn Uhr</td>
-        <td>Empfang beim Kulturstadl Reckeneder</td>
-    </tr>
+            <tr>
+                <th>Sechzehn Uhr</th>
+                <td>Empfang beim Kulturstadl Reckeneder</td>
+            </tr>
 
-    <tr>
-        <td>circa Achtzehn Uhr Dreißig</td>
-        <td>Eröffnung des Buffets</td>
-    </tr>
+            <tr>
+                <th>circa Achtzehn Uhr Dreißig</th>
+                <td>Eröffnung des Buffets</td>
+            </tr>
 
-    <tr>
-        <td>circa Zwanzig Uhr Dreißig</td>
-        <td>Anschneiden der Torte & Eröffnung des Dessertbuffets</td>
-    </tr>
+            <tr>
+                <th>circa Zwanzig Uhr Dreißig</th>
+                <td>Anschneiden der Torte & Eröffnung des Dessertbuffets</td>
+            </tr>
 
-    <tr>
-        <td>circa ab Einundzwanzig Uhr</td>
-        <td>Nun beginnt endlich die eigentliche Hochzeit: Party mit DJ und Cocktails.</td>
-    </tr>
-</table>
-
+            <tr>
+                <th>ab circa Einundzwanzig Uhr</th>
+                <td>Nun beginnt endlich die eigentliche Hochzeit: Party mit DJ und Cocktails.</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+﻿body.save-the-date {
+    background: url('../img/kissing.jpg') no-repeat center center fixed;
+    background-size: cover;
+    background-attachment: fixed;
+    font-size: 17px;
+    hyphens: manual;
+
+    a, a:hover {
+        color: #333;
+    }
+
+    h1 {
+        text-align: center;
+        font-size: 45px;
+        font-weight: bold;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 35px;
+    }
+
+    h3 {
+        text-align: center;
+        font-size: 30px;
+
+        span {
+            font-size: 25px;
+        }
+    }
+
+    .well {
+        background-color: rgba(255, 255, 255, 0.75);
+    }
+}

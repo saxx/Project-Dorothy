@@ -1,0 +1,20 @@
+﻿body.rsvp {
+    input#Name {
+        display: inline;
+        width: 180px;
+    }
+
+    select#Type {
+        display: inline;
+        width: 180px;
+    }
+
+    input#AdultsCount, input#ChildCount {
+        display: inline;
+        width: 60px;
+    }
+
+    textarea {
+        height: 60px;
+    }
+}

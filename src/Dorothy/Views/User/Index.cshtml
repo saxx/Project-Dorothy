@@ -9,95 +9,115 @@
 }
 
 <div class="row">
+    <div class="col-md-6">
+        <div class="date-box">
 
-    <div class="col-md-8">
-        <div class="row">
-            <div class="col-md-6">
-                <h3>An-/Abmeldung (RSVP)</h3>
+            <div class="row">
+                <div class="col-md-4 hidden-sm hidden-xs">
+                    <img src="/img/yes.png" />
+                </div>
 
-                <p>
-                    Solltest du das noch nicht gemacht haben, bitten wir dich, kurz das An-/Abmeldungsformular auszufüllen.
-                    Das hilft uns ungemein, denn so können wir genauer sagen, mit wie vielen Gästen wir rechnen dürfen.
-                </p>
+                <div class="col-md-8 col-sm-12">
+                    @if (User.IsInRole("User"))
+                    {
+                        <text>
+                        <p>
+                            3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 16:00 Uhr
+                        </p>
+                        <p>
+                            <a asp-action="Route">
+                                <span class="glyphicon glyphicon-map-marker"></span> Treffling bei Linz
+                            </a>
+                        </p>
+                        </text>
+                    }
+                    else
+                    {
+                        <text>
+                        <p>
+                            3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 14:30 Uhr
+                        </p>
+                        <p>
+                            <span class="glyphicon glyphicon-map-marker"></span>
+                            <a asp-action="Route">
+                                Landesgalerie Linz
+                            </a>
+                        </p>
+                        </text>
+                    }
 
-                <p>
-                    <a asp-controller="Rsvp" asp-action="Index" class="btn btn-default center-block">Zur An-/Abmeldung</a>
-                </p>
-            </div>
-
-            <div class="col-md-6">
-                <h3>Fotos</h3>
-
-                <p>
-                    Wir möchten gerne alle Fotos und Videos sammeln, die du und die anderen Gäste während der Hochzeit machen.
-                    Wir werden sie dann als Erinnerung hier für alle Gäste zugänglich machen.
-                </p>
-
-                <p>
-                    <a asp-controller="Photos" asp-action="Index" class="btn btn-default center-block">Zu den Fotos</a>
-                </p>
+                    <p>
+                        Nur mehr @days Tage ...
+                    </p>
+                </div>
             </div>
         </div>
-
-        <div class="row">
-            <div class="col-md-6">
-                <h3>Die Hochzeit</h3>
-
-                <p>
-                    Alle Infos, die uns eingefallen sind und sich irgendwie um unsere Hochzeit drehen, haben wir hier zusammengefasst: Alles zu
-                    <a asp-action="Route">Ort und Anfahrt</a>, zu <a asp-action="Agenda">Tagesablauf und Programm</a> und die <a asp-action="Faq">Fragen und Antworten (FAQ)</a> für alles andere.
-                </p>
-            </div>
-
-            <div class="col-md-6">
-                <h3>Kontakt</h3>
-
-                <p>
-                    Du kannst uns jederzeit per Telefon oder E-Mail erreichen.
-                    Beispielsweise wenn du noch eine Frage hast, die wir hier noch nicht beantwortet haben, oder auch einfach nur so.
-                </p>
-
-                <p><b>Christina</b><br /><span class="glyphicon glyphicon-envelope"></span> cfeilmayr@icloud.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0699 11092784</p>
-
-                <p><b>Hannes</b><br /><span class="glyphicon glyphicon-envelope"></span> hannes@sachsenhofer.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0677 61603456</p>
-            </div>
-
-
-        </div>
-
     </div>
 
-    <div class="col-md-4">
-        <div class="date-box well">
-            @if (User.IsInRole("User"))
-            {
-                <text>
-                <p>
-                    3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 16:00 Uhr
-                </p>
-                <p>
-                    <a asp-action="Route">
-                        <span class="glyphicon glyphicon-map-marker"></span> Treffling bei Linz
-                    </a>
-                </p>
-                </text>
-            }
-            else
-            {
-                <text>
-                <p>
-                    3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 14:30 Uhr
-                </p>
-                <p>
-                    <a asp-action="Route">
-                        <span class="glyphicon glyphicon-map-marker"></span> Landesmuseum Linz
-                    </a>
-                </p>
-                </text>
-            }
-            <p>
-                Noch @days Tage ...
-            </p>
-        </div>
+
+    <div class="col-md-6">
+        <h3>An-/Abmeldung (RSVP)</h3>
+
+        <p>
+            Solltest du das noch nicht gemacht haben, bitten wir dich, kurz das An-/Abmeldungsformular auszufüllen.
+            Das hilft uns ungemein, denn so können wir genauer sagen, mit wie vielen Gästen wir rechnen dürfen.
+        </p>
+
+        <p>
+            <a asp-controller="Rsvp" asp-action="Index" class="btn btn-default center-block">An-/Abmeldung</a>
+        </p>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Die Hochzeit</h3>
+
+        <p>
+            Alle Infos, die uns eingefallen sind und sich irgendwie um unsere Hochzeit drehen, haben wir hier zusammengefasst.
+        </p>
+
+        <p>
+            <a asp-action="Route" class="btn btn-default btn-block">Ort und Anfahrt</a>
+        </p>
+
+        <p><a asp-action="Agenda" class="btn btn-default btn-block">Tagesablauf und Programm</a></p>
+        <p><a asp-action="Faq" class="btn btn-default btn-block">Fragen und Antworten (FAQ)</a></p>
+    </div>
+
+
+    <div class="col-md-6">
+        <h3>Kontakt</h3>
+
+        <p>
+            Du kannst uns jederzeit per Telefon oder E-Mail erreichen.
+            Beispielsweise wenn du noch eine Frage hast, die wir hier noch nicht beantwortet haben, oder auch einfach nur so.
+        </p>
+
+        <p>
+            <b>Christina</b><br /><span class="glyphicon glyphicon-envelope"></span> cfeilmayr@icloud.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0699 11092784
+        </p>
+
+        <p>
+            <b>Hannes</b><br /><span class="glyphicon glyphicon-envelope"></span> hannes@sachsenhofer.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0677 61603456
+        </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-6">
+        <h3>Fotos</h3>
+
+        <p>
+            Wir möchten gerne alle Fotos und Videos sammeln, die du und die anderen Gäste während der Hochzeit machen.
+            Wir werden sie dann als Erinnerung hier für alle Gäste zugänglich machen.
+        </p>
+
+        <p>
+            <a asp-controller="Photos" asp-action="Index" class="btn btn-default center-block">Zu den Fotos</a>
+        </p>
+    </div>
+</div>
+
+

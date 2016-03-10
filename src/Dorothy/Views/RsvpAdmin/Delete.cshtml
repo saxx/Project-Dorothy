@@ -1,14 +1,19 @@
 ﻿@model Dorothy.ViewModels.RsvpAdmin.DeleteViewModel
 
-<h2>An-/Abmeldung löschen</h2>
-<hr/>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>An-/Abmeldung löschen</h2>
 
-<form class="form-horizontal" method="POST">
+        <form class="form-horizontal" method="POST">
 
-    <p>Ganz sicher und unwiderbringlich die An-/Abmeldung von <b>@Model.Name</b> löschen?</p>
+            <p>
+                Ganz sicher und unwiderbringlich die An-/Abmeldung von <b>@Model.Name</b> löschen?
+            </p>
 
-    <div class="form-group">
-        <a href="@Url.Action("Index")" class="btn btn-default">Nein, zurück</a>
-            <button type="submit" class="btn btn-danger">Ja, löschen</button>
+            <div class="form-group">
+                <a href="@Url.Action("Index")" class="btn btn-default">Nein, zurück</a>
+                <button type="submit" class="btn btn-danger">Ja, löschen</button>
+            </div>
+        </form>
     </div>
-</form>
+</div>

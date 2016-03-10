@@ -1,16 +1,19 @@
 ﻿@model Dorothy.ViewModels.Guests.EditViewModel
 
-<h2>Gast bearbeiten</h2>
-<hr />
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Gast bearbeiten</h2>
 
-<form class="form-horizontal" method="POST">
-    @Html.ValidationSummary()
+        <form class="form-horizontal" method="POST">
+            @Html.ValidationSummary()
 
-    @Html.Partial("_Edit")
+            @Html.Partial("_Edit")
 
-    <div class="form-group">
-        <div class="col-sm-offset-2 col-sm-10">
-            <button type="submit" class="btn btn-primary">Speichern</button>
-        </div>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button type="submit" class="btn btn-primary">Speichern</button>
+                </div>
+            </div>
+        </form>
     </div>
-</form>
+</div>

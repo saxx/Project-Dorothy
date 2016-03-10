@@ -1,110 +1,112 @@
 ﻿@model Dorothy.ViewModels.Guests.IndexViewModel
 
-<h2>Gäste</h2>
+<div class="row">
+    <div class="col-xs-12">
+        <h2>Gäste</h2>
 
-<a asp-action="Create" class="btn btn-primary">Neuen Gast anlegen</a>
+        <a asp-action="Create" class="btn btn-primary">Neuen Gast anlegen</a>
 
-<hr />
+        <table class="table table-condensed">
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Noch unsicher, ob eingeladen wird</th>
+            </tr>
 
-<table class="table table-condensed">
-    <tr>
-        <th></th>
-        <th></th>
-        <th>Noch unsicher, ob eingeladen wird</th>
-    </tr>
+            @if (Model.WithoutGroupCount.HasAny)
+            {
+                <tr>
+                    <td><span class="label label-success">< Ohne Gruppe ></span></td>
+                    <td>@Model.WithoutGroupCount.AdultCount Erwachsene, @Model.WithoutGroupCount.ChildCount Kinder</td>
+                    <td>@Model.WithoutGroupCount.OptionalAdultCount Erwachsene, @Model.WithoutGroupCount.OptionalChildCount Kinder</td>
+                </tr>
+            }
 
-    @if (Model.WithoutGroupCount.HasAny)
-    {
-        <tr>
-            <td><span class="label label-success">< Ohne Gruppe ></span></td>
-            <td>@Model.WithoutGroupCount.AdultCount Erwachsene, @Model.WithoutGroupCount.ChildCount Kinder</td>
-            <td>@Model.WithoutGroupCount.OptionalAdultCount Erwachsene, @Model.WithoutGroupCount.OptionalChildCount Kinder</td>
-        </tr>
-    }
+            @foreach (var pair in Model.PerGroupCount)
+            {
+                <tr>
+                    <td><span class="label label-success">@pair.Key</span></td>
+                    <td>@pair.Value.AdultCount Erwachsene, @pair.Value.ChildCount Kinder</td>
+                    <td>@pair.Value.OptionalAdultCount Erwachsene, @pair.Value.OptionalChildCount Kinder</td>
+                </tr>
+            }
 
-    @foreach (var pair in Model.PerGroupCount)
-    {
-        <tr>
-            <td><span class="label label-success">@pair.Key</span></td>
-            <td>@pair.Value.AdultCount Erwachsene, @pair.Value.ChildCount Kinder</td>
-            <td>@pair.Value.OptionalAdultCount Erwachsene, @pair.Value.OptionalChildCount Kinder</td>
-        </tr>
-    }
+            <tr>
+                <th>Ingesamt</th>
+                <th>@Model.OverallCount.AdultCount Erwachsene, @Model.OverallCount.ChildCount Kinder</th>
+                <th>@Model.OverallCount.OptionalAdultCount Erwachsene, @Model.OverallCount.OptionalChildCount Kinder</th>
+            </tr>
+        </table>
 
-    <tr>
-        <th>Ingesamt</th>
-        <th>@Model.OverallCount.AdultCount Erwachsene, @Model.OverallCount.ChildCount Kinder</th>
-        <th>@Model.OverallCount.OptionalAdultCount Erwachsene, @Model.OverallCount.OptionalChildCount Kinder</th>
-    </tr>
-</table>
+        <hr />
 
-<hr />
+        <table class="table table-hover">
+            <tr>
+                <th></th>
+                <th>Name(n)</th>
+                <th>Gruppe</th>
+                <th>Anzahl</th>
+                <th>Notizen</th>
+                <th colspan="2">Eingeladen?</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
 
-<table class="table table-hover">
-    <tr>
-        <th></th>
-        <th>Name(n)</th>
-        <th>Gruppe</th>
-        <th>Anzahl</th>
-        <th>Notizen</th>
-        <th colspan="2">Eingeladen?</th>
-        <th></th>
-        <th></th>
-        <th></th>
-    </tr>
-
-    @foreach (var guest in Model.Guests)
-    {
-        <tr class="@( guest.IsOptional ? "text-muted" : "")">
-            <th>
-                @if (guest.AdultCount <= 0)
+            @foreach (var guest in Model.Guests)
+            {
+                <tr class="@( guest.IsOptional ? "text-muted" : "")">
+                    <th>
+                        @if (guest.AdultCount <= 0)
+                        {
+                            <span class="glyphicon glyphicon-flash error" title="Keine Erwachsenen angegeben"></span>
+                        }
+                        @if (guest.HasMissingName)
+                        {
+                            <span class="glyphicon glyphicon-user error" title="Name fehlt"></span>
+                        }
+                        @if (guest.HasMissingEmail)
+                        {
+                            <span class="glyphicon glyphicon-envelope warning" title="E-Mail-Adresse fehlt"></span>
+                        }
+                    </th>
+                    <td>
+                        @guest.Names
+                        <div class="text-muted salutation">
+                            @guest.GetSalutation()
+                        </div>
+                    </td>
+                    <td>
+                        <span class="label label-success">@guest.Group</span>
+                    </td>
+                    <td>
+                        @guest.AdultCount Erwachsene, @guest.ChildCount Kinder
+                    </td>
+                    <td>
+                        @guest.Notes
+                    </td>
+                    <td>
+                        @if (guest.HasEmail)
                 {
-                    <span class="glyphicon glyphicon-flash error" title="Keine Erwachsenen angegeben"></span>
-                }
-                @if (guest.HasMissingName)
-                {
-                    <span class="glyphicon glyphicon-user error" title="Name fehlt"></span>
-                }
-                @if (guest.HasMissingEmail)
-                {
-                    <span class="glyphicon glyphicon-envelope warning" title="E-Mail-Adresse fehlt"></span>
-                }
-            </th>
-            <td>
-                @guest.Names
-                <div class="text-muted salutation">
-                    @guest.GetSalutation()
-                </div>
-            </td>
-            <td>
-                <span class="label label-success">@guest.Group</span>
-            </td>
-            <td>
-                @guest.AdultCount Erwachsene, @guest.ChildCount Kinder
-            </td>
-            <td>
-                @guest.Notes
-            </td>
-            <td>
-                @if (guest.HasEmail)
-                {
-                    <span class="glyphicon glyphicon-ok-circle" title="E-Mail bekommen"></span>
-                }
-            <td>
-                @if (guest.HasInvitation)
-                {
-                    <span class="glyphicon glyphicon-ok" title="Einladung bekommen"></span>
-                }
-            </td>
-            <th>
-                <a href="@guest.GetSaveTheDateLink(Context.Request)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-time"></span></a>
-            </th>
-            <td>
-                <a href="@Url.Action("Edit", new {guest.Id})" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
-            </td>
-            <td>
-                <a href="@Url.Action("Delete", new {guest.Id})" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
-            </td>
-        </tr>
-    }
-</table>
+                            <span class="glyphicon glyphicon-ok-circle" title="E-Mail bekommen"></span>
+                        }
+                    <td>
+                        @if (guest.HasInvitation)
+                        {
+                            <span class="glyphicon glyphicon-ok" title="Einladung bekommen"></span>
+                        }
+                    </td>
+                    <th>
+                        <a href="@guest.GetSaveTheDateLink(Context.Request)" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-time"></span></a>
+                    </th>
+                    <td>
+                        <a href="@Url.Action("Edit", new {guest.Id})" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-pencil"></span></a>
+                    </td>
+                    <td>
+                        <a href="@Url.Action("Delete", new {guest.Id})" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
