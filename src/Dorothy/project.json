@@ -46,7 +46,7 @@
     "**.vspscc"
   ],
   "scripts": {
-    "postrestore": [ "npm install" ],
-    "prepare": [ "gulp js", "gulp css" ]
+    "postrestore": [ ],
+    "prepare": [ ]
   }
 }
