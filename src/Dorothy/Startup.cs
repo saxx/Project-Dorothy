@@ -28,6 +28,7 @@ namespace Dorothy
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddApplicationInsightsTelemetry(Configuration);
             services.AddHaufwerk("Dorothy", "https://hauwerk.adliance-labs.net");
             services.AddMvc();
 
@@ -48,6 +49,7 @@ namespace Dorothy
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
 
+            app.UseApplicationInsightsRequestTelemetry();
             app.UseHaufwerk();
 
             app.UseCookieAuthentication(options =>

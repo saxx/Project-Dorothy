@@ -1,1 +1,5 @@
-{}
+{
+  "ApplicationInsights": {
+    "InstrumentationKey": "448b3c6e-21d5-4c03-829f-84738ed04e6f"
+  }
+}
