@@ -1,5 +1,6 @@
 ﻿using Dorothy.Models;
 using Dorothy.ViewModels.Guests;
+using Haufwerk.Client;
 using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
 using Microsoft.Data.Entity;
@@ -27,10 +28,11 @@ namespace Dorothy
         // This method gets called by the runtime.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddHaufwerk("Dorothy", "https://hauwerk.adliance-labs.net");
             services.AddMvc();
 
             var config = new Configuration(Configuration);
-            services.AddSingleton(x=>config);
+            services.AddSingleton(x => config);
 
             services.AddEntityFramework()
                 .AddSqlServer()
@@ -46,6 +48,8 @@ namespace Dorothy
             loggerFactory.MinimumLevel = LogLevel.Information;
             loggerFactory.AddConsole();
 
+            app.UseHaufwerk();
+
             app.UseCookieAuthentication(options =>
             {
                 options.AutomaticAuthenticate = true;
@@ -53,35 +57,13 @@ namespace Dorothy
                 options.LoginPath = "/Login";
             });
 
-            // Configure the HTTP request pipeline.
-
-            // Add the following to the request pipeline only in development environment.
-            /*if (env.IsDevelopment())
-            {*/
-                app.UseDeveloperExceptionPage();
-            /*}
-            else
-            {
-                // Add Error handling middleware which catches all application specific errors and
-                // send the request to the following path or controller action.
-                app.UseExceptionHandler("/Home/Error");
-            }*/
-
-            // Add the platform handler to the request pipeline.
             app.UseIISPlatformHandler();
-
-            // Add static files to the request pipeline.
             app.UseStaticFiles();
-
-            // Add MVC to the request pipeline.
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-
-                // Uncomment the following line to add a route for porting Web API 2 controllers.
-                // routes.MapWebApiRoute("DefaultApi", "api/{controller}/{id?}");
             });
 
             CreateAutoMapperMappings();

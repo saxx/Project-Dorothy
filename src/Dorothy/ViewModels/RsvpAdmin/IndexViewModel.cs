@@ -18,7 +18,7 @@ namespace Dorothy.ViewModels.RsvpAdmin
 
         public int AdultsYes
         {
-            get { return Rsvps.Where(x => x.Type == RsvpType.Yes).Sum(x => x.AdultsCount); }
+            get { return Rsvps.Where(x => x.Type == RsvpType.Yes).Sum(x => x.AdultsCount) + Rsvps.Count(x => x.Type == RsvpType.Yes); }
         }
 
         public int ChildsYes
@@ -28,7 +28,7 @@ namespace Dorothy.ViewModels.RsvpAdmin
 
         public int AdultsNo
         {
-            get { return Rsvps.Where(x => x.Type == RsvpType.No).Sum(x => x.AdultsCount); }
+            get { return Rsvps.Where(x => x.Type == RsvpType.No).Sum(x => x.AdultsCount) + Rsvps.Count(x => x.Type == RsvpType.No); }
         }
 
         public int ChildsNo
@@ -38,7 +38,7 @@ namespace Dorothy.ViewModels.RsvpAdmin
 
         public int AdultsMaybe
         {
-            get { return Rsvps.Where(x => x.Type == RsvpType.Maybe).Sum(x => x.AdultsCount); }
+            get { return Rsvps.Where(x => x.Type == RsvpType.Maybe).Sum(x => x.AdultsCount) + Rsvps.Count(x => x.Type == RsvpType.Maybe); }
         }
 
         public int ChildsMaybe

@@ -1,10 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNet.Authentication.Cookies;
 using Microsoft.AspNet.Mvc;
 using Microsoft.AspNet.Authorization;
 using System.Security.Claims;
 using Dorothy.Models;
 using Dorothy.ViewModels.Home;
+using Microsoft.AspNet.Http.Authentication;
 
 namespace Dorothy.Controllers
 {
@@ -45,13 +47,21 @@ namespace Dorothy.Controllers
         {
             if (ModelState.IsValid)
             {
+                var properties = new AuthenticationProperties
+                {
+                    IsPersistent = true,
+                    ExpiresUtc = new DateTime(2016, 12, 31)
+                };
+
                 if (model.Password == _config.NormalUserPassword)
                 {
                     var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "User") };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await
-                        HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                            new ClaimsPrincipal(identity));
+                        HttpContext.Authentication.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(identity), 
+                            properties);
                     return RedirectToAction("Index", "User");
                 }
 
@@ -60,8 +70,10 @@ namespace Dorothy.Controllers
                     var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "Insider") };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await
-                        HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                            new ClaimsPrincipal(identity));
+                        HttpContext.Authentication.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(identity),
+                            properties);
                     return RedirectToAction("Index", "User");
                 }
 
@@ -70,8 +82,10 @@ namespace Dorothy.Controllers
                     var claims = new[] { new Claim("name", "user"), new Claim(ClaimTypes.Role, "Admin") };
                     var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                     await
-                        HttpContext.Authentication.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme,
-                            new ClaimsPrincipal(identity));
+                        HttpContext.Authentication.SignInAsync(
+                            CookieAuthenticationDefaults.AuthenticationScheme,
+                            new ClaimsPrincipal(identity),
+                            properties);
                     return RedirectToAction("Index", "User");
                 }
 
@@ -82,7 +96,7 @@ namespace Dorothy.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Logout()
+        public async Task<IActionResult> Logoff()
         {
             await HttpContext.Authentication.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index");

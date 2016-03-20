@@ -2,17 +2,61 @@
     <div class="col-md-6">
         <h2>Anfahrt</h2>
 
-        Wir feiern unsere Hochzeit im <b>Kulturstadl Reckender</b> in Mittertreffling,
-        denn dort gibt es alles, was man für eine ordentliche Party braucht: Genug Platz und eine Bar.<br /><br />
-        Kulturstadl Reckeneder<br />
-        Mittertreffling 8<br />
-        4209 Engerwitzdorf
-        <br /><br />
-        Mittertreffling ist nur ein paar Autominuten von Linz Richtung Freistadt entfernt.
-        Von Dornach aus sind es nur 6 Kilometer, nämlich an der ersten Ausfahrt ("Treffling") wieder abfahren.<br /><br />
-        Linz ist problemlos mit dem Taxi erreichbar. Wenn dir as lieber ist, kannst du auch in der Nähe übernachten (siehe <a asp-action="Faq">FAQ</a>).
+        @if (!User.IsInRole("User"))
+        {
+            <p>
+                Unsere standesamtliche Trauung findet in der <b>Landesgalerie Linz</b> - also eigentlich direkt neben unser Wohnung - statt.
+            </p>
+
+            <p>
+                Landesgalerie (Landesmuseum) Linz<br />
+                Museumstraße 14<br />
+                4010 Linz
+            </p>
+
+            <p>
+                Wenn du mit dem Auto kommst, bitte etwas aufpassen, denn rund um die Landesgalerie gibt es fast nur Einbahnen. Du kannst gleich nebenan in der Elisabeth-Tiefgarage parken.
+            </p>
+
+            <hr />
+
+            <p>
+                Direkt im Anschluss geht es zum eigentlichen Hochzeitsfest nach Mittertreffling, zum <b> Kulturstadl Reckender </b>, denn dort gibt es alles, was man für eine ordentliche Party braucht: Genug Platz und eine Bar.
+            </p>
+        }
+        else
+        {
+            <p>
+                Wir feiern unsere Hochzeit im <b> Kulturstadl Reckender </b> in Mittertreffling,
+                denn dort gibt es alles, was man für eine ordentliche Party braucht: Genug Platz und eine Bar.
+            </p>
+        }
+
+        <p>
+            Kulturstadl Reckeneder<br />
+            Mittertreffling 8 <br />
+            4209 Engerwitzdorf
+        </p>
+
+        <p>
+            Mittertreffling ist nur ein paar Autominuten von Linz auf der A7 in Richtung Freistadt entfernt.
+            Von Dornach aus sind es nur 6 Kilometer, nämlich gleich an der ersten Ausfahrt (Treffling) wieder abfahren.
+        </p>
+
+        <p>
+            Linz ist problemlos mit dem Taxi erreichbar. Wenn dir as lieber ist, kannst du auch in der Nähe übernachten (mehr zu Übernachtung und Taxis haben wir in den <a asp-action="Faq">FAQ</a> geschrieben).
+        </p>
     </div>
     <div class="col-md-6">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1321.7813451176053!2d14.380132257660408!3d48.33477856978764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4773a2f48360f503%3A0xca5e81963d5f1c01!2sMittertreffling+8%2C+4209+Mittertreffling!5e0!3m2!1sen!2sat!4v1451919127267" width="100%" height="500" frameborder="0" style="border:0" allowfullscreen></iframe>
+        @if (!User.IsInRole("User"))
+        {
+            <p>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1876.5467052533234!2d14.29225763688294!3d48.30597087759452!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477397861e7ade43%3A0xa4d013ef98973258!2sO%C3%96+Landesgalerie+Linz!5e0!3m2!1sen!2sat!4v1458470525677" width="100%" height="500" frameborder="0" style="border: 0" allowfullscreen></iframe>
+            </p>
+        }
+
+        <p>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1321.7813451176053!2d14.380132257660408!3d48.33477856978764!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4773a2f48360f503%3A0xca5e81963d5f1c01!2sMittertreffling+8%2C+4209+Mittertreffling!5e0!3m2!1sen!2sat!4v1451919127267" width="100%" height="500" frameborder="0" style="border: 0" allowfullscreen></iframe>
+        </p>
     </div>
 </div>

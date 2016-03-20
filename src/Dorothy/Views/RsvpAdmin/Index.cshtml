@@ -33,10 +33,11 @@
                 <th>Name</th>
                 <th>Anzahl</th>
                 <th>Notizen</th>
+                <th>Datum (UTC)</th>
                 <th></th>
             </tr>
 
-            @foreach (var rsvp in Model.Rsvps)
+            @foreach (var rsvp in Model.Rsvps.OrderByDescending(x => x.DateTime))
             {
                 <tr>
                     <th>
@@ -57,10 +58,13 @@
                         @rsvp.Name
                     </td>
                     <td>
-                        @rsvp.AdultsCount Erwachsene, @rsvp.ChildCount Kinder
+                        @(rsvp.AdultsCount + 1) Erwachsene, @rsvp.ChildCount Kinder
                     </td>
                     <td>
                         @((rsvp.Note ?? "").Replace("\n", " ").Replace("\r", ""))
+                    </td>
+                    <td>
+                        @rsvp.DateTime.ToString("yyy-MM-dd HH:mm")
                     </td>
                     <td class="pull-right">
                         <a href="@Url.Action("Delete", new {rsvp.Id})" class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-trash"></span></a>

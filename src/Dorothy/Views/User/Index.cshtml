@@ -10,6 +10,17 @@
 
 <div class="row">
     <div class="col-md-6">
+        <h3>Schön, dass du hier bist</h3>
+        <p>
+            Hier sammeln wir alle wichtigen (und weniger wichtigen) Informationen zu unserer Hochzeit und halten sie aktuell.
+        </p>
+        <p>
+            Wir haben versucht, vorab schon alles aufzuschreiben, was uns eingefallen ist. Bis zur Hochzeit werden wir das laufend erweitern und ergänzen.
+            Wir bitten dich deshalb, zumindest kurz vor dem Termin noch einmal kurz vorbei zu schauen, sollten wir bis jetzt noch etwas Wichtiges übersehen haben.
+        </p>
+    </div>
+
+    <div class="col-md-6">
         <div class="date-box">
 
             <div class="row">
@@ -25,8 +36,9 @@
                             3. September 2016<br /><span class="glyphicon glyphicon-time"></span> 16:00 Uhr
                         </p>
                         <p>
+                            <span class="glyphicon glyphicon-map-marker"></span> 
                             <a asp-action="Route">
-                                <span class="glyphicon glyphicon-map-marker"></span> Treffling bei Linz
+                                Treffling bei Linz
                             </a>
                         </p>
                         </text>
@@ -53,8 +65,9 @@
             </div>
         </div>
     </div>
+</div>
 
-
+<div class="row">
     <div class="col-md-6">
         <h3>An-/Abmeldung (RSVP)</h3>
 
@@ -67,24 +80,39 @@
             <a asp-controller="Rsvp" asp-action="Index" class="btn btn-default center-block">An-/Abmeldung</a>
         </p>
     </div>
+
+
+    <div class="col-md-6">
+        <h3>Fotos</h3>
+
+        <p>
+            Wir möchten gerne alle Fotos und Videos sammeln, die du und die anderen Gäste während der Hochzeit machen.
+            Wir werden sie dann als Erinnerung hier für alle Gäste zugänglich machen.
+        </p>
+
+        <p>
+            <a asp-controller="Photos" asp-action="Index" class="btn btn-default center-block">Zu den Fotos</a>
+        </p>
+    </div>
+
 </div>
+
 
 <div class="row">
     <div class="col-md-6">
-        <h3>Die Hochzeit</h3>
-
-        <p>
-            Alle Infos, die uns eingefallen sind und sich irgendwie um unsere Hochzeit drehen, haben wir hier zusammengefasst.
-        </p>
+        <h3>Rund um die Hochzeit</h3>
 
         <p>
             <a asp-action="Route" class="btn btn-default btn-block">Ort und Anfahrt</a>
         </p>
 
-        <p><a asp-action="Agenda" class="btn btn-default btn-block">Tagesablauf und Programm</a></p>
-        <p><a asp-action="Faq" class="btn btn-default btn-block">Fragen und Antworten (FAQ)</a></p>
+        <p>
+            <a asp-action="Agenda" class="btn btn-default btn-block">Tagesablauf und Programm</a>
+        </p>
+        <p>
+            <a asp-action="Faq" class="btn btn-default btn-block">Fragen und Antworten (FAQ)</a>
+        </p>
     </div>
-
 
     <div class="col-md-6">
         <h3>Kontakt</h3>
@@ -100,22 +128,6 @@
 
         <p>
             <b>Hannes</b><br /><span class="glyphicon glyphicon-envelope"></span> hannes@sachsenhofer.com <span class="glyphicon glyphicon glyphicon-phone-alt"></span> 0677 61603456
-        </p>
-    </div>
-</div>
-
-
-<div class="row">
-    <div class="col-md-6">
-        <h3>Fotos</h3>
-
-        <p>
-            Wir möchten gerne alle Fotos und Videos sammeln, die du und die anderen Gäste während der Hochzeit machen.
-            Wir werden sie dann als Erinnerung hier für alle Gäste zugänglich machen.
-        </p>
-
-        <p>
-            <a asp-controller="Photos" asp-action="Index" class="btn btn-default center-block">Zu den Fotos</a>
         </p>
     </div>
 </div>

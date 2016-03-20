@@ -1,5 +1,4 @@
-﻿using System.Linq;
-using Dorothy.Models;
+﻿using Dorothy.Models;
 using Dorothy.ViewModels.User;
 using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
@@ -35,6 +34,11 @@ namespace Dorothy.Controllers
         public IActionResult Faq()
         {
             return View(new IndexViewModel());
+        }
+
+        public IActionResult LogOff()
+        {
+            return Redirect("~/Home/Logoff");
         }
     }
 }
