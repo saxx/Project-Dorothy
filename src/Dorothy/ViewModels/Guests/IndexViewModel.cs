@@ -17,38 +17,37 @@ namespace Dorothy.ViewModels.Guests
                 .Select(x => new Guest(x))
                 .ToList();
 
-            OverallCount = new GroupCount
-            {
-                AdultCount = Guests.Where(x => !x.IsOptional).Sum(x => x.AdultCount),
-                ChildCount = Guests.Where(x => !x.IsOptional).Sum(x => x.ChildCount),
-                OptionalAdultCount = Guests.Where(x => x.IsOptional).Sum(x => x.AdultCount),
-                OptionalChildCount = Guests.Where(x => x.IsOptional).Sum(x => x.ChildCount)
-            };
+            OverallCount = BuildGroupCount(Guests.ToList());
 
             var guestsWithoutGroup = Guests.Where(x => string.IsNullOrEmpty(x.Group)).ToList();
-            WithoutGroupCount = new GroupCount
-            {
-                AdultCount = guestsWithoutGroup.Where(x => !x.IsOptional).Sum(x => x.AdultCount),
-                ChildCount = guestsWithoutGroup.Where(x => !x.IsOptional).Sum(x => x.ChildCount),
-                OptionalAdultCount = guestsWithoutGroup.Where(x => x.IsOptional).Sum(x => x.AdultCount),
-                OptionalChildCount = guestsWithoutGroup.Where(x => x.IsOptional).Sum(x => x.ChildCount)
-            };
+            WithoutGroupCount = BuildGroupCount(guestsWithoutGroup);
 
             PerGroupCount = new Dictionary<string, GroupCount>();
             foreach (var group in Guests.Select(x => x.Group).Where(x => !string.IsNullOrEmpty(x)).Distinct())
             {
                 var guestsInGroup = Guests.Where(x => group == x.Group).ToList();
-                PerGroupCount[group] = new GroupCount
-                {
-                    AdultCount = guestsInGroup.Where(x => !x.IsOptional).Sum(x => x.AdultCount),
-                    ChildCount = guestsInGroup.Where(x => !x.IsOptional).Sum(x => x.ChildCount),
-                    OptionalAdultCount = guestsInGroup.Where(x => x.IsOptional).Sum(x => x.AdultCount),
-                    OptionalChildCount = guestsInGroup.Where(x => x.IsOptional).Sum(x => x.ChildCount)
-                };
+                PerGroupCount[group] = BuildGroupCount(guestsInGroup);
             }
 
             return this;
         }
+
+
+        private GroupCount BuildGroupCount(IList<Guest> guests)
+        {
+            return new GroupCount
+            {
+                AdultCount = guests.Where(x => !x.IsOptional).Sum(x => x.AdultCount),
+                AdultCountInvited = guests.Where(x => !x.IsOptional && x.HasInvitation).Sum(x => x.AdultCount),
+                ChildCount = guests.Where(x => !x.IsOptional).Sum(x => x.ChildCount),
+                ChildCountInvited = guests.Where(x => !x.IsOptional && x.HasInvitation).Sum(x => x.ChildCount),
+                OptionalAdultCount = guests.Where(x => x.IsOptional).Sum(x => x.AdultCount),
+                OptionalAdultCountInvited = guests.Where(x => x.IsOptional && x.HasInvitation).Sum(x => x.AdultCount),
+                OptionalChildCount = guests.Where(x => x.IsOptional).Sum(x => x.ChildCount),
+                OptionalChildCountInvited = guests.Where(x => x.IsOptional && x.HasInvitation).Sum(x => x.ChildCount)
+            };
+        }
+
 
         public IEnumerable<Guest> Guests { get; private set; }
 
@@ -59,9 +58,13 @@ namespace Dorothy.ViewModels.Guests
         public class GroupCount
         {
             public int AdultCount { get; set; }
+            public int AdultCountInvited { get; set; }
             public int ChildCount { get; set; }
+            public int ChildCountInvited { get; set; }
             public int OptionalAdultCount { get; set; }
+            public int OptionalAdultCountInvited { get; set; }
             public int OptionalChildCount { get; set; }
+            public int OptionalChildCountInvited { get; set; }
 
             public bool HasAny => AdultCount + ChildCount + OptionalAdultCount + OptionalChildCount > 0;
         }

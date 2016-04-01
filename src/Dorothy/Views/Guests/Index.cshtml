@@ -9,16 +9,16 @@
         <table class="table table-condensed">
             <tr>
                 <th></th>
-                <th></th>
-                <th>Noch unsicher, ob eingeladen wird</th>
+                <th>Fix / davon eingeladen</th>
+                <th>Unsicher / davon eingeladen</th>
             </tr>
 
             @if (Model.WithoutGroupCount.HasAny)
             {
                 <tr>
                     <td><span class="label label-success">< Ohne Gruppe ></span></td>
-                    <td>@Model.WithoutGroupCount.AdultCount Erwachsene, @Model.WithoutGroupCount.ChildCount Kinder</td>
-                    <td>@Model.WithoutGroupCount.OptionalAdultCount Erwachsene, @Model.WithoutGroupCount.OptionalChildCount Kinder</td>
+                    <td>@Model.WithoutGroupCount.AdultCount E @Model.WithoutGroupCount.ChildCount K / @Model.WithoutGroupCount.AdultCountInvited E @Model.WithoutGroupCount.ChildCountInvited K</td>
+                    <td>@Model.WithoutGroupCount.OptionalAdultCount E @Model.WithoutGroupCount.OptionalChildCount K / @Model.WithoutGroupCount.OptionalAdultCountInvited E @Model.WithoutGroupCount.OptionalChildCountInvited K</td>
                 </tr>
             }
 
@@ -26,15 +26,21 @@
             {
                 <tr>
                     <td><span class="label label-success">@pair.Key</span></td>
-                    <td>@pair.Value.AdultCount Erwachsene, @pair.Value.ChildCount Kinder</td>
-                    <td>@pair.Value.OptionalAdultCount Erwachsene, @pair.Value.OptionalChildCount Kinder</td>
+                    <td>
+                        @pair.Value.AdultCount E @pair.Value.ChildCount K / @pair.Value.AdultCountInvited E @pair.Value.ChildCountInvited K
+                        @if (pair.Value.AdultCount > pair.Value.AdultCountInvited || pair.Value.ChildCount > pair.Value.ChildCountInvited)
+                        {
+                            <span class="glyphicon glyphicon-exclamation-sign"></span>
+                        }
+                    </td>
+                    <td>@pair.Value.OptionalAdultCount E @pair.Value.OptionalChildCount K / @pair.Value.OptionalAdultCountInvited E @pair.Value.OptionalChildCountInvited K</td>
                 </tr>
             }
 
             <tr>
                 <th>Ingesamt</th>
-                <th>@Model.OverallCount.AdultCount Erwachsene, @Model.OverallCount.ChildCount Kinder</th>
-                <th>@Model.OverallCount.OptionalAdultCount Erwachsene, @Model.OverallCount.OptionalChildCount Kinder</th>
+                <th>@Model.OverallCount.AdultCount E @Model.OverallCount.ChildCount K / @Model.OverallCount.AdultCountInvited E @Model.OverallCount.ChildCountInvited K</th>
+                <th>@Model.OverallCount.OptionalAdultCount E @Model.OverallCount.OptionalChildCount K / @Model.OverallCount.OptionalAdultCountInvited E @Model.OverallCount.OptionalChildCountInvited K</th>
             </tr>
         </table>
 
