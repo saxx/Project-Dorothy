@@ -21,11 +21,11 @@ artifacts:
 
 environment:
   deploy_server:
-    secure: F+KLCVGHG2RAp7DIw4Scyw==
+    secure: 7f9bcFkXgx37td51cnPI9A==
   deploy_username:
-    secure: lIFltaQi1u2vXngmaV9iKw==
+    secure: +4+0JDINyo6SMCl7QDFxjA==
   deploy_password:
-    secure: MoW0xgokacm0ynXqPSoGI9VoHcjdDZ/Y+cU2rl/O5mQ=
+    secure: RHmwJ0TuDaknqQdBiIUtYiO6NSmxqEbXDACMtJG16W4=
 
 deploy_script:
 - CALL "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:recycleApp -dest:recycleApp=Dorothy,recycleMode=StopAppPool,computername=http://%deploy_server%/MSDEPLOYAGENTSERVICE,username=%deploy_username%,password=%deploy_password%
