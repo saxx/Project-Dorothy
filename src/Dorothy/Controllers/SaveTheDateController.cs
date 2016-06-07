@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using Dorothy.Models;
 using Dorothy.ViewModels.SaveTheDate;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Mvc;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dorothy.Controllers
 {

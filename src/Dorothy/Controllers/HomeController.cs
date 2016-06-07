@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.AspNet.Authentication.Cookies;
-using Microsoft.AspNet.Mvc;
-using Microsoft.AspNet.Authorization;
 using System.Security.Claims;
 using Dorothy.Models;
 using Dorothy.ViewModels.Home;
-using Microsoft.AspNet.Http.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http.Authentication;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Dorothy.Controllers
 {

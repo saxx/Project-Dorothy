@@ -2,18 +2,10 @@ version: '{build}'
 
 os: Visual Studio 2015
 
-install:
-- ps: Install-Product node $env:nodejs_version
-- npm --prefix .\src\Dorothy install .\src\Dorothy
-- npm install -g gulp
-- dnvm install -arch x64 1.0.0-rc1-update1
-- dnvm install -arch x86 1.0.0-rc1-update1
-- dnvm use -arch x86 1.0.0-rc1-update1
-- dnu restore ".\src\Dorothy"
-
 build_script:
-- SET PATH=C:\Program Files (x86)\MSBuild\14.0\Bin;%PATH%
-- CALL dnu publish ".\src\Dorothy" --out "%APPVEYOR_BUILD_FOLDER%\artifacts\publish" --configuration Release --no-source --runtime dnx-clr-win-x64.1.0.0-rc1-update1 --wwwroot-out "wwwroot" --quiet
+- CALL dotnet restore
+- cd "%APPVEYOR_BUILD_FOLDER%/src/dorothy"
+- CALL dotnet publish --configuration Release --output "%APPVEYOR_BUILD_FOLDER%\artifacts\publish"
 
 artifacts:
 - path: artifacts/publish
@@ -30,5 +22,4 @@ environment:
 deploy_script:
 - CALL "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:recycleApp -dest:recycleApp=Dorothy,recycleMode=StopAppPool,computername=http://%deploy_server%/MSDEPLOYAGENTSERVICE,username=%deploy_username%,password=%deploy_password%
 - CALL "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:contentPath=%APPVEYOR_BUILD_FOLDER%\artifacts\publish\wwwroot -dest:contentPath=Dorothy,computername=http://%deploy_server%/MSDEPLOYAGENTSERVICE,username=%deploy_username%,password=%deploy_password%
-- CALL "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:contentPathLib=%APPVEYOR_BUILD_FOLDER%\artifacts\publish\approot -dest:contentPathLib=Dorothy,computername=http://%deploy_server%/MSDEPLOYAGENTSERVICE,username=%deploy_username%,password=%deploy_password%
 - CALL "C:\Program Files\IIS\Microsoft Web Deploy V3\msdeploy.exe" -verb:sync -source:recycleApp -dest:recycleApp=Dorothy,recycleMode=StartAppPool,computername=http://%deploy_server%/MSDEPLOYAGENTSERVICE,username=%deploy_username%,password=%deploy_password%

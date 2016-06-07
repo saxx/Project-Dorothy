@@ -1,7 +1,7 @@
 ﻿using Dorothy.Models;
 using Dorothy.ViewModels.User;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 
 
 namespace Dorothy.Controllers

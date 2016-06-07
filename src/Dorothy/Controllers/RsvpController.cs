@@ -2,11 +2,11 @@
 using System.Text;
 using Dorothy.Models;
 using Dorothy.ViewModels.Rsvp;
-using Microsoft.AspNet.Authorization;
-using Microsoft.AspNet.Http;
-using Microsoft.AspNet.Mvc;
 using System.Threading.Tasks;
-using Microsoft.Data.Entity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Dorothy.Controllers
 {

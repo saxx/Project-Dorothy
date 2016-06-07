@@ -1,65 +1,76 @@
-﻿using Dorothy.Models;
+﻿using System.IO;
+using AutoMapper;
+using Dorothy.Models;
 using Dorothy.ViewModels.Guests;
 using Haufwerk.Client;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Hosting;
-using Microsoft.Data.Entity;
-using Microsoft.Dnx.Runtime;
-using Microsoft.Extensions.PlatformAbstractions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Dorothy
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
+        public static void Main(string[] args)
         {
-            // Setup configuration sources.
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
+            host.Run();
+        }
+
+
+        public Startup(IHostingEnvironment env)
+        {
             var builder = new ConfigurationBuilder()
                 .AddJsonFile("config.json")
                 .AddEnvironmentVariables("Dorothy:");
             Configuration = builder.Build();
         }
 
-        public IConfiguration Configuration { get; set; }
 
-        // This method gets called by the runtime.
+        public IConfigurationRoot Configuration { get; set; }
+
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddHaufwerk("Dorothy", "https://hauwerk.adliance-labs.net");
+            services.AddHaufwerk("Dorothy", "https://haufwerk.sachsenhofer.com");
             services.AddMvc();
 
             var config = new Configuration(Configuration);
             services.AddSingleton(x => config);
 
-            services.AddEntityFramework()
-                .AddSqlServer()
-                .AddDbContext<Db>(options =>
+            services.AddDbContext<Db>(options =>
                 {
                     options.UseSqlServer(config.ConnectionString);
                 });
         }
 
-        // Configure is called after ConfigureServices is called.
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.MinimumLevel = LogLevel.Information;
-            loggerFactory.AddConsole();
+            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
+            loggerFactory.AddDebug();
 
             app.UseApplicationInsightsRequestTelemetry();
+            app.UseApplicationInsightsExceptionTelemetry();
             app.UseHaufwerk();
 
-            app.UseCookieAuthentication(options =>
+            app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
-                options.AutomaticAuthenticate = true;
-                options.AutomaticChallenge = true;
-                options.LoginPath = "/Login";
+                AutomaticAuthenticate = true,
+                AutomaticChallenge = true,
+                LoginPath = "/Login"
             });
 
-            app.UseIISPlatformHandler();
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
@@ -67,17 +78,18 @@ namespace Dorothy
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
             CreateAutoMapperMappings();
         }
 
         private void CreateAutoMapperMappings()
         {
-            AutoMapper.Mapper.CreateMap(typeof(CreateViewModel), typeof(Guest));
-            AutoMapper.Mapper.CreateMap(typeof(EditViewModel), typeof(Guest));
-            AutoMapper.Mapper.CreateMap(typeof(Guest), typeof(EditViewModel));
-            AutoMapper.Mapper.CreateMap(typeof(Guest), typeof(IndexViewModel.Guest));
-            AutoMapper.Mapper.CreateMap(typeof(ViewModels.Rsvp.IndexViewModel), typeof(Rsvp));
+#pragma warning disable 618
+            Mapper.CreateMap(typeof(CreateViewModel), typeof(Guest));
+            Mapper.CreateMap(typeof(EditViewModel), typeof(Guest));
+            Mapper.CreateMap(typeof(Guest), typeof(EditViewModel));
+            Mapper.CreateMap(typeof(Guest), typeof(IndexViewModel.Guest));
+            Mapper.CreateMap(typeof(ViewModels.Rsvp.IndexViewModel), typeof(Rsvp));
+#pragma warning restore 618
         }
     }
 }

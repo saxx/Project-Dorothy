@@ -4,8 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using Dorothy.Models;
-using Microsoft.Data.Entity;
-
+using Microsoft.EntityFrameworkCore;
 
 namespace Dorothy.ViewModels.Guests
 {
