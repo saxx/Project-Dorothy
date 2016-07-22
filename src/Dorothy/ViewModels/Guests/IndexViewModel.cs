@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Dorothy.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -8,13 +9,13 @@ namespace Dorothy.ViewModels.Guests
 {
     public class IndexViewModel
     {
-        public async Task<IndexViewModel> Fill(Db db)
+        public async Task<IndexViewModel> Fill(IMapper mapper, Db db)
         {
             Guests = (await db.Guests.ToListAsync())
                 .OrderBy(x => x.IsOptional)
                 .ThenBy(x => x.Group)
                 .ThenBy(x => x.Names)
-                .Select(x => new Guest(x))
+                .Select(x => new Guest(mapper, x))
                 .ToList();
 
             OverallCount = BuildGroupCount(Guests.ToList());
@@ -71,9 +72,9 @@ namespace Dorothy.ViewModels.Guests
 
         public class Guest : Models.Guest
         {
-            public Guest(Models.Guest guest)
+            public Guest(IMapper mapper, Models.Guest guest)
             {
-                AutoMapper.Mapper.Map(guest, this);
+                mapper.Map(guest, this);
             }
 
             public bool HasMissingName => this.Names == null || this.Names.IndexOf('?') >= 0;

@@ -47,6 +47,7 @@ namespace Dorothy
 
             var config = new Configuration(Configuration);
             services.AddSingleton(x => config);
+            services.AddSingleton(x => CreateAutoMapperMappings());
 
             services.AddDbContext<Db>(options =>
                 {
@@ -78,18 +79,18 @@ namespace Dorothy
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-            CreateAutoMapperMappings();
         }
 
-        private void CreateAutoMapperMappings()
+        private IMapper CreateAutoMapperMappings()
         {
-#pragma warning disable 618
-            Mapper.CreateMap(typeof(CreateViewModel), typeof(Guest));
-            Mapper.CreateMap(typeof(EditViewModel), typeof(Guest));
-            Mapper.CreateMap(typeof(Guest), typeof(EditViewModel));
-            Mapper.CreateMap(typeof(Guest), typeof(IndexViewModel.Guest));
-            Mapper.CreateMap(typeof(ViewModels.Rsvp.IndexViewModel), typeof(Rsvp));
-#pragma warning restore 618
+            var config = new MapperConfiguration(cfg => {
+                cfg.CreateMap<CreateViewModel, Guest>();
+                cfg.CreateMap<EditViewModel, Guest>();
+                cfg.CreateMap<Guest, EditViewModel>();
+                cfg.CreateMap<Guest, IndexViewModel.Guest>();
+                cfg.CreateMap<ViewModels.Rsvp.IndexViewModel, Rsvp>();
+            });
+            return config.CreateMapper();
         }
     }
 }

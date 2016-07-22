@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Dorothy.Models;
 using Dorothy.ViewModels.Guests;
 using Microsoft.AspNetCore.Authorization;
@@ -11,17 +12,19 @@ namespace Dorothy.Controllers
     public class GuestsController : Controller
     {
         private readonly Db _db;
+        private readonly IMapper _mapper;
 
 
-        public GuestsController(Db db)
+        public GuestsController(Db db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
 
 
         public async Task<IActionResult> Index()
         {
-            return View(await new IndexViewModel().Fill(_db));
+            return View(await new IndexViewModel().Fill(_mapper, _db));
         }
 
 
@@ -37,7 +40,7 @@ namespace Dorothy.Controllers
             if (ModelState.IsValid)
             {
                 var guest = new Guest();
-                AutoMapper.Mapper.Map(model, guest);
+                _mapper.Map(model, guest);
                 _db.Guests.Add(guest);
                 await _db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -54,7 +57,7 @@ namespace Dorothy.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View(await new EditViewModel().Fill(_db, guest));
+            return View(await new EditViewModel().Fill(_mapper, _db, guest));
         }
 
 
@@ -70,7 +73,7 @@ namespace Dorothy.Controllers
             var guest = await _db.Guests.FirstOrDefaultAsync(x => x.Id == id);
             if (guest != null)
             {
-                AutoMapper.Mapper.Map(model, guest);
+                _mapper.Map(model, guest);
                 await _db.SaveChangesAsync();
             }
 

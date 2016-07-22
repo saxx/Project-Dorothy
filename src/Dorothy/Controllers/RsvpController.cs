@@ -3,6 +3,7 @@ using System.Text;
 using Dorothy.Models;
 using Dorothy.ViewModels.Rsvp;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -14,11 +15,13 @@ namespace Dorothy.Controllers
     public class RsvpController : Controller
     {
         private readonly Db _db;
+        private readonly IMapper _mapper;
         private const string CookieKey = "rsvp";
 
-        public RsvpController(Db db)
+        public RsvpController(Db db, IMapper mapper)
         {
             _db = db;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
@@ -61,7 +64,7 @@ namespace Dorothy.Controllers
                     }
                 }
 
-                AutoMapper.Mapper.Map(model, rsvp);
+                _mapper.Map(model, rsvp);
                 rsvp.DateTime = DateTime.Now.ToUniversalTime();
                 await _db.SaveChangesAsync();
 
