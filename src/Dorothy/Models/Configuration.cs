@@ -28,7 +28,7 @@ namespace Dorothy.Models
 
             if (string.IsNullOrEmpty(ConnectionString))
             {
-                ConnectionString = "Data Source=(localdb)\\ProjectsV13;Initial Catalog=dorothy;Integrated Security=True;MultipleActiveResultSets=True;";
+                ConnectionString = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=dorothy;Integrated Security=True;MultipleActiveResultSets=True;";
             }
         }
 

@@ -1,22 +1,84 @@
 ﻿@model Dorothy.ViewModels.Photos.IndexViewModel
 
+@{
+    ViewBag.BodyCssClass = "photos";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <h2>
+            <span class="glyphicon glyphicon-camera"></span> Fotos und Videos
+        </h2>
+
+        <p>
+            Wir würden gerne alle Fotos und Videos sammeln, die während unserer Hochzeit anfallen.
+        </p>
+        <p>
+            Heutzutage hat ja bekanntlich jede(r) eine Top-Kamera in der Tasche.
+            Manche verwenden diese Apparaturen namens Smartphones zusätzlich auch zum Telefonieren, aber das ist eher selten.
+            Hauptsächlich werden sie zum Fotografieren und dem <a href="http://www.pokemongo.com/">Einfangen unschuldiger Wildtiere</a> benutzt, die dann wie in Hahnenkämpfen aufeinander gehetzt werden.
+        </p>
+        <p>
+            Wir würden uns freuen, wenn alle unschätzbaren visuellen Zeitdokumente, die während der Hochzeit gemacht werden, auch als Erinnerungsstück bei uns laden.
+            Wir sammeln alle Fotos und Videos an dieser Stelle gesammelt und stellen sie auch allen anderen interessierten Gästen zur Verfügung.
+        </p>
+        <p>
+            Es gibt zwei Möglichkeiten, wie du uns die von dir gemachten Fotos zukommen lassen kannst:
+        </p>
+    </div>
+</div>
 
 <div class="row">
     <div class="col-md-6">
-        <h2>Fotos und Videos</h2>
-
+        <img src="~/img/Fotoschachtel.png" class="logo" />
+        <h3>Fotoschachtel</h3>
         <p>
-            Hier möchten wir alle Fotos und Videos sammeln, die du und die anderen Gäste während unserer Hochzeit machen. Smartphones sei Dank geht das ja so einfach wie noch nie.
-            Alle Fotos werden dann an dieser Stelle allen Gästen zur Verfügung gestellt.
+            Ja, Hannes hat tatsächlich eine eigene App für seine Hochzeit programmiert. Das war viel, viel mehr Arbeit als gedacht, aber die App namens Fotoschachtel ist mittlerweile live.
+            Sie ist zwar höchstwahrscheinlich nicht die beste App aller Zeiten, aber man kann dort sehr einfach Fotos zu einzelnen Events sammeln und mit allen anderen Gästen teilen
         </p>
-        <p>
-            Noch wissen wir nicht genau, wie wir das möglichst einfach und bequem für alle machen werden.
-            Aber zum Glück ist es ja noch ewig bis zum großen Tag, bis dahin wird uns sicher etwas einfallen.
 
+        <p>
+            <div class="row">
+                <div class="col-xs-6 appstore">
+                    <a href="https://itunes.apple.com/at/app/fotoschachtel/id1114136776" title="Lade Fotoschachtel für iOS herunter">
+                        <img src="~/img/appstore.svg" />
+                    </a>
+                </div>
+                <div class="col-xs-6 appstore">
+                    <a href="https://play.google.com/store/apps/details?id=com.sachsenhofer.fotoschachtel" title="Lade Fotoschachtel für Android herunter">
+                        <img src="~/img/googleplay.png" />
+                    </a>
+                </div>
+            </div>
+        </p>
+
+        <p>
+            In der App gibst du als den Namen des Events einfach <code>Hochzeit</code> an, das dazugehörige Passwort ist <code>oskar</code>.
+            Oder du scannst direkt über die App den folgenden QR-Code:
+        </p>
+        <p class="qr">
+            <a href="https://fotoschachtel.sachsenhofer.com/event/Hochzeit%3AA6EIIIfk50XMDjpnS1vVZ2R9JqRHkVVLVAzy5Y2H694">
+                <img src="~/img/fotoschachtel_qr.png" />
+            </a>
         </p>
     </div>
 
-    <div class="col-md-6 text-center">
-        <span class="glyphicon glyphicon-camera huge"></span>
+    <div class="col-md-6">
+        <img src="~/img/OneDrive.png" class="logo" />
+        <h3>OneDrive</h3>
+        <p>
+            Die Alternative zu Fotoschachtel ist OneDrive. Dafür gibt es eine angenehme App für alle Plattformen und mehr Speicherplatz als jemals aufgebraucht werden kann.
+            Du kannst deine Fotos auf dieses Verzeichnis auf OneDrive hochladen:
+        </p>
+        <p class="onedrive">
+            <a href="https://1drv.ms/f/s!AitANheAUPSOh8JlW6UpJdo1mqho4w">Hochzeitsfotos @@ OneDrive</a>
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xs-12">
+        Übrigens: Wenn du Fotos auf Facebook, Twitter oä. veröffentlichen möchtest, frage bitte alle abgebildeten Personen, ob die auch damit einverstanden sind.
+        Aber das hat jetzt nichts direkt mit unserer Hochzeit zu tun, sondern ist natürlich generell selbstverständlich :)
     </div>
 </div>

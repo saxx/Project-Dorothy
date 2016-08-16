@@ -1,0 +1,33 @@
+﻿body.photos {
+    div.appstore {
+        text-align: center;
+
+        img {
+            width: 50%;
+        }
+    }
+
+    p.qr {
+        text-align: center;
+
+        img {
+            width: 25%;
+        }
+    }
+
+    p.onedrive {
+        text-align: center;
+        font-size: 150%;
+        font-weight: bold;
+
+        a {
+            text-decoration: none;
+        }
+    }
+
+    img.logo {
+        float:right;
+        width: 75px;
+        padding-bottom: 30px;
+    }
+}
