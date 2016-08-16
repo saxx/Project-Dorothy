@@ -11,13 +11,13 @@ namespace Dorothy.Migrations
                 name: "Guest",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AdultCount = table.Column<int>(nullable: false),
-                    ChildCount = table.Column<int>(nullable: false),
+                    AdultCount = table.Column<int>(),
+                    ChildCount = table.Column<int>(),
                     Group = table.Column<string>(nullable: true),
-                    HasInvitation = table.Column<bool>(nullable: false),
-                    IsOptional = table.Column<bool>(nullable: false),
+                    HasInvitation = table.Column<bool>(),
+                    IsOptional = table.Column<bool>(),
                     Names = table.Column<string>(nullable: true),
                     Notes = table.Column<string>(nullable: true)
                 },

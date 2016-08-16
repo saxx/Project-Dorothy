@@ -213,5 +213,6 @@ body.save-the-date {
     body.save-the-date h3 span {
       font-size: 25px; }
   body.save-the-date .well {
+    background-color: #fff;
     background-color: rgba(255, 255, 255, 0.75); }
 

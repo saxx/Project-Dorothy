@@ -27,6 +27,7 @@ namespace Dorothy
         }
 
 
+        // ReSharper disable once UnusedParameter.Local
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()

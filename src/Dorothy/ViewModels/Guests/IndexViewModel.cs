@@ -77,8 +77,8 @@ namespace Dorothy.ViewModels.Guests
                 mapper.Map(guest, this);
             }
 
-            public bool HasMissingName => this.Names == null || this.Names.IndexOf('?') >= 0;
-            public bool HasMissingEmail => !this.ExtractEmailAdresses().Any();
+            public bool HasMissingName => Names == null || Names.IndexOf('?') >= 0;
+            public bool HasMissingEmail => !ExtractEmailAdresses().Any();
         }
     }
 }

@@ -8,16 +8,16 @@ namespace Dorothy.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Rsvp",
-                columns: table => new
+                "Rsvp",
+                table => new
                 {
-                    Id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>()
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    AdultsCount = table.Column<int>(nullable: false),
-                    ChildCount = table.Column<int>(nullable: false),
+                    AdultsCount = table.Column<int>(),
+                    ChildCount = table.Column<int>(),
                     Name = table.Column<string>(nullable: true),
                     Note = table.Column<string>(nullable: true),
-                    Type = table.Column<int>(nullable: false)
+                    Type = table.Column<int>()
                 },
                 constraints: table =>
                 {

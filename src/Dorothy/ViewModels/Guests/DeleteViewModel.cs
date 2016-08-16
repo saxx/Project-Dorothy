@@ -1,5 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Dorothy.Models;
+﻿using Dorothy.Models;
 
 
 namespace Dorothy.ViewModels.Guests
