@@ -1,33 +1,16 @@
 ﻿body.photos {
-    div.appstore {
-        text-align: center;
-
-        img {
-            width: 50%;
-        }
+    div.row {
+        background-color: white;
     }
 
-    p.qr {
+    div.col-sm-4 {
         text-align: center;
+        padding: 20px;
 
-        img {
-            width: 25%;
+        div.round img {
+            border-radius: 50%; 
+            max-width: 150px;
+            max-height: 150px;
         }
-    }
-
-    p.onedrive {
-        text-align: center;
-        font-size: 150%;
-        font-weight: bold;
-
-        a {
-            text-decoration: none;
-        }
-    }
-
-    img.logo {
-        float:right;
-        width: 75px;
-        padding-bottom: 30px;
     }
 }

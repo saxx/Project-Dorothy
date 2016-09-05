@@ -170,27 +170,16 @@ body.rsvp input#AdultsCount, body.rsvp input#ChildCount {
 body.rsvp textarea {
   height: 60px; }
 
-body.photos div.appstore {
-  text-align: center; }
-  body.photos div.appstore img {
-    width: 50%; }
+body.photos div.row {
+  background-color: white; }
 
-body.photos p.qr {
-  text-align: center; }
-  body.photos p.qr img {
-    width: 25%; }
-
-body.photos p.onedrive {
+body.photos div.col-sm-4 {
   text-align: center;
-  font-size: 150%;
-  font-weight: bold; }
-  body.photos p.onedrive a {
-    text-decoration: none; }
-
-body.photos img.logo {
-  float: right;
-  width: 75px;
-  padding-bottom: 30px; }
+  padding: 20px; }
+  body.photos div.col-sm-4 div.round img {
+    border-radius: 50%;
+    max-width: 150px;
+    max-height: 150px; }
 
 body.save-the-date {
   background: url("../img/kissing.jpg") no-repeat center center fixed;
