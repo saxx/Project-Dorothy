@@ -173,10 +173,10 @@ body.rsvp textarea {
 body.photos div.row {
   background-color: white; }
 
-body.photos div.col-sm-4 {
+body.photos div.col-sm-3 {
   text-align: center;
   padding: 20px; }
-  body.photos div.col-sm-4 div.round img {
+  body.photos div.col-sm-3 div.round img {
     border-radius: 50%;
     max-width: 150px;
     max-height: 150px; }
