@@ -10,7 +10,7 @@ namespace Dorothy.Controllers
     {
         public IActionResult Index()
         {
-            return View(new IndexViewModel());
+            return RedirectToAction("Index", "Photos");
         }
 
         public IActionResult Route()
