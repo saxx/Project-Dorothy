@@ -2,7 +2,6 @@
 using AutoMapper;
 using Dorothy.Models;
 using Dorothy.ViewModels.Guests;
-using Haufwerk.Client;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -30,9 +29,7 @@ namespace Dorothy
         // ReSharper disable once UnusedParameter.Local
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
-                .AddJsonFile("config.json")
-                .AddEnvironmentVariables("Dorothy:");
+            var builder = new ConfigurationBuilder().AddEnvironmentVariables("Dorothy:");
             Configuration = builder.Build();
         }
 
@@ -42,8 +39,7 @@ namespace Dorothy
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddApplicationInsightsTelemetry(Configuration);
-            services.AddHaufwerk("Dorothy", "https://haufwerk.sachsenhofer.com");
+            services.AddApplicationInsightsTelemetry("4bdaf152-c203-425b-a9a4-2ad8f4dfa9d4");
             services.AddMvc();
 
             var config = new Configuration(Configuration);
@@ -59,12 +55,7 @@ namespace Dorothy
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
-            app.UseApplicationInsightsRequestTelemetry();
-            app.UseApplicationInsightsExceptionTelemetry();
-            app.UseHaufwerk();
+            loggerFactory.AddConsole(LogLevel.Information).AddDebug(LogLevel.Information);
 
             app.UseCookieAuthentication(new CookieAuthenticationOptions
             {
@@ -76,9 +67,7 @@ namespace Dorothy
             app.UseStaticFiles();
             app.UseMvc(routes =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
             });
         }
 

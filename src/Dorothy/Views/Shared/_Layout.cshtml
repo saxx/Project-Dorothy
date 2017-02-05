@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.min.css" asp-file-version="true"/>
 
-    @Html.ApplicationInsightsJavaScript(TelemetryConfiguration)
+    @Html.Raw(AppInsightScriptSnippet.FullScript)
 </head>
 <body class="@ViewBag.BodyCssClass">
     @if (User.Identity.IsAuthenticated)

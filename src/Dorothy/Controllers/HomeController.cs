@@ -50,7 +50,7 @@ namespace Dorothy.Controllers
                 var properties = new AuthenticationProperties
                 {
                     IsPersistent = true,
-                    ExpiresUtc = new DateTime(2016, 12, 31)
+                    ExpiresUtc = new DateTime(2017, 12, 31)
                 };
 
                 if (model.Password == _config.NormalUserPassword)
